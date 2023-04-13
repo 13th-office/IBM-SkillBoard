@@ -1,0 +1,7 @@
+.general {
+  background-color: #001d6c;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../assets/background.png");
+  background-size: cover;
+}

@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "./screens/Login";
+import LoginScreen from "./screens/LoginScreen";
 import { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
 import Dashboard from "./screens/Dashboard";
@@ -10,7 +10,7 @@ const RoutesAvailable = () => {
   if (!user) {
     return (
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/" element={<LoginScreen />}></Route>
       </Routes>
     );
   } else {
