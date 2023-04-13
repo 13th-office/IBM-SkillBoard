@@ -24,13 +24,40 @@
 }
 
 .left {
-  padding-top: 16rem;
+  justify-content: center;
   padding-left: 10rem;
+  position: relative;
+}
+
+.left-content {
+  position: absolute;
+  top: 30%;
 }
 
 .login-box {
   background-color: #f4f4f4;
   padding: 4rem 3rem;
   width: 35rem;
-  height: 25rem;
+  height: 27rem;
+}
+
+.login-field {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.text-field {
+  height: 2.5rem;
+  padding: 0 0.5rem;
+}
+
+.login-button {
+  width: 5rem;
+  height: 2rem;
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+  font-weight: 200;
 }

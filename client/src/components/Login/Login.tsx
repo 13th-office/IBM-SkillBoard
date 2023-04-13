@@ -12,12 +12,14 @@ const Login = ({ handleLogin }: Props) => {
   return (
     <div className="general">
       <div className="half left">
-        <div className="logo">
-          <Logo />
+        <div className="left-content">
+          <div className="logo">
+            <Logo />
+          </div>
+          <h1 className="text-white text-4xl w-[40rem]">
+            Tus empleados son wapos, pero lo seran mas si le van al Madrid
+          </h1>
         </div>
-        <h1 className="text-white text-4xl w-[40rem]">
-          Tus empleados son wapos, pero lo seran mas si le van al Barca
-        </h1>
       </div>
       <div className="half right">
         <div className="login-box">
@@ -33,23 +35,29 @@ const Login = ({ handleLogin }: Props) => {
           >
             <Form>
               <div>
-                <label htmlFor="email">Email</label>
-                <Field
-                  id="email"
-                  name="email"
-                  placeholder="cristianoronaldodossantosaveiro@ibm.com"
-                />
+                <div className="login-field gap-3">
+                  <label htmlFor="email">Email</label>
+                  <Field
+                    id="email"
+                    name="email"
+                    placeholder="cristianoronaldodossantosaveiro@ibm.com"
+                    className="text-field"
+                  />
+                </div>
+                <div className="login-field gap-3">
+                  <label htmlFor="password">Password</label>
+                  <Field
+                    id="password"
+                    name="password"
+                    type="password"
+                    placeholder="Muchas gracias aficion, esto es para vosotros SIUUUUUU"
+                    className="text-field"
+                  />
+                </div>
               </div>
-              <div>
-                <label htmlFor="password">Password</label>
-                <Field
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Muchas gracias aficion, esto es para vosotros SIUUUUUU"
-                />
-              </div>
-              <button type="submit">Log in</button>
+              <button type="submit" className="login-button bg-[#001d6c]">
+                Log in
+              </button>
             </Form>
           </Formik>
         </div>
