@@ -6,7 +6,7 @@ import UserProvider from "./contexts/UserContext";
 
 function App() {
   return (
-    <div className="App">
+    <div className="ibm-font">
       <UserProvider>
         <BrowserRouter>
           <RoutesAvailable />
