@@ -14,7 +14,7 @@ const Login = ({ handleLogin, message }: Props) => {
       <div className="half left">
         <div className="left-content">
           <div className="logo">
-            <Logo />
+            <Logo color={true} />
           </div>
           <h1 className="text-white italic text-4xl w-[40rem]">
             "Tus empleados son guapos, pero lo seran mas si los certificas"
