@@ -1,14 +1,14 @@
-import React, { Fragment } from "react";
 import "./Login.css";
 import Logo from "../Logo";
 import { Formik, Form, Field } from "formik";
 import { Credentials } from "../../../lib/types";
 
 interface Props {
-  handleLogin: (values: Credentials) => string;
+  handleLogin: (values: Credentials) => void;
+  message: string;
 }
 
-const Login = ({ handleLogin }: Props) => {
+const Login = ({ handleLogin, message }: Props) => {
   return (
     <div className="general">
       <div className="half left">
@@ -16,8 +16,8 @@ const Login = ({ handleLogin }: Props) => {
           <div className="logo">
             <Logo />
           </div>
-          <h1 className="text-white text-4xl w-[40rem]">
-            Tus empleados son wapos, pero lo seran mas si le van al Madrid
+          <h1 className="text-white italic text-4xl w-[40rem]">
+            "Tus empleados son guapos, pero lo seran mas si los certificas"
           </h1>
         </div>
       </div>
@@ -40,7 +40,7 @@ const Login = ({ handleLogin }: Props) => {
                   <Field
                     id="email"
                     name="email"
-                    placeholder="cristianoronaldodossantosaveiro@ibm.com"
+                    placeholder="email@ibm.com"
                     className="text-field"
                   />
                 </div>
@@ -50,7 +50,7 @@ const Login = ({ handleLogin }: Props) => {
                     id="password"
                     name="password"
                     type="password"
-                    placeholder="Muchas gracias aficion, esto es para vosotros SIUUUUUU"
+                    placeholder="Enter password"
                     className="text-field"
                   />
                 </div>
@@ -60,6 +60,7 @@ const Login = ({ handleLogin }: Props) => {
               </button>
             </Form>
           </Formik>
+          {message && <p className="text-red-600 mt-8 text-sm">*{message}*</p>}
         </div>
       </div>
     </div>
