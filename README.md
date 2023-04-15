@@ -26,3 +26,6 @@ Current version working for ruby lang and gemfiles is .ruby-version's file one.
 
 To run the database rename `application copy.yml` to `application.yml`
 
+### Basics of the back-end
+
+
