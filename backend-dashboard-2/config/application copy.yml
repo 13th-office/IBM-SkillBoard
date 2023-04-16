@@ -16,3 +16,4 @@ DB_PORT: 27017
 DB_NAME: 'ibmSkillBoard'
 DB_USER: 'ibmSkillBoardUser'
 DB_PASS: 'ibmSkillBoardPass'
+FIREBASE_KEY: 'FIREBASE_KEY'
