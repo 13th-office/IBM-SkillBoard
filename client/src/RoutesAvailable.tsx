@@ -3,6 +3,10 @@ import LoginScreen from "./screens/LoginScreen";
 import { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
 import DashboardScreen from "./screens/DashboardScreen/DashboardScreen";
+import Sidebar from "./components/Sidebar/Sidebar";
+import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
+import MyTeamsScreen from "./screens/MyTeamsScreen/MyTeamsScreen";
+import AllEmployeesScreen from "./screens/AllEmployeesScreen/AllEmployeesScreen";
 
 const RoutesAvailable = () => {
   const { user } = useContext(UserContext);
@@ -16,9 +20,12 @@ const RoutesAvailable = () => {
   } else {
     return (
       <div className="flex">
-        <div className=" h-screen w-1/6 bg-blue-800"></div>
+        <Sidebar />
         <Routes>
           <Route path="/" element={<DashboardScreen />}></Route>
+          <Route path="/profile" element={<ProfileScreen />}></Route>
+          <Route path="/myteams" element={<MyTeamsScreen />}></Route>
+          <Route path="/allemployees" element={<AllEmployeesScreen />}></Route>
         </Routes>
       </div>
     );
