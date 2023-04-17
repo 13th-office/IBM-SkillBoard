@@ -14,7 +14,7 @@ for file in .env setup.env; do
         echo "Configuration file $file not found" >&2
         exit 1
     fi
-    source "$SETUP_PATH/../$file"
+    source "$SETUP_PATH/$file"
 done
 set +o allexport
 
