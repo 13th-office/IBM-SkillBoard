@@ -9,13 +9,11 @@ sudo systemctl start mongod
 # Load environment variables
 # https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs
 set -o allexport
-for file in .env setup.env; do
-    if [ ! -f "$SETUP_PATH/../$file" ]; then
-        echo "Configuration file $file not found" >&2
-        exit 1
-    fi
-    source "$SETUP_PATH/$file"
-done
+if [ ! -f "$SETUP_PATH/.env" ]; then
+    echo "Configuration file .env not found" >&2
+    exit 1
+fi
+source "$SETUP_PATH/.env"
 set +o allexport
 
 # Create admin user
