@@ -1,0 +1,7 @@
+.dashboard-screen {
+  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../../assets/background-general.png");
+  background-size: cover;
+}

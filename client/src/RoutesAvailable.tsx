@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 import { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
-import Dashboard from "./screens/Dashboard";
+import DashboardScreen from "./screens/DashboardScreen/DashboardScreen";
 
 const RoutesAvailable = () => {
   const { user } = useContext(UserContext);
@@ -16,7 +16,7 @@ const RoutesAvailable = () => {
   } else {
     return (
       <Routes>
-        <Route path="/" element={<Dashboard />}></Route>
+        <Route path="/" element={<DashboardScreen />}></Route>
       </Routes>
     );
   }
