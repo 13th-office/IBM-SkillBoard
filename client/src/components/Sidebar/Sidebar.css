@@ -1,0 +1,21 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 100vh;
+  background-color: #001d6c;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-sections {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.logo-sidebar {
+  margin-top: 15rem;
+}
