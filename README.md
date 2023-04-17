@@ -24,7 +24,7 @@ Current version working for ruby lang and gemfiles is .ruby-version's file one.
 
     `rails s`
 
-To run the database rename `application copy.yml` to `application.yml`
+To run the database create `application.yml` from `example.application.yml`
 
 ## Running the endpoint between Mongo and Ruby
 - ### Mongo server
