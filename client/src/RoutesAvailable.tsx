@@ -15,9 +15,12 @@ const RoutesAvailable = () => {
     );
   } else {
     return (
-      <Routes>
-        <Route path="/" element={<DashboardScreen />}></Route>
-      </Routes>
+      <div className="flex">
+        <div className=" h-screen w-1/6 bg-blue-800"></div>
+        <Routes>
+          <Route path="/" element={<DashboardScreen />}></Route>
+        </Routes>
+      </div>
     );
   }
 };
