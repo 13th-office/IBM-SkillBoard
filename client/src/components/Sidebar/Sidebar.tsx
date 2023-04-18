@@ -8,6 +8,7 @@ import { AiOutlineApartment, AiOutlineTeam } from "react-icons/ai";
 import { BsBoxArrowLeft } from "react-icons/bs";
 import { SESSION_KEY } from "../../../lib/constants";
 import { UserContext } from "../../contexts/UserContext";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const iconSize = "1.6rem";
@@ -43,9 +44,11 @@ const Sidebar = () => {
         <BsBoxArrowLeft />
         <p>Log out</p>
       </button>
-      <div className="w-1/2">
-        <Logo color={true} />
-      </div>
+      <Link className="logo-sidebar" to="/">
+        <div className="w-1/2 hover:scale-105 ease-in-out duration-300">
+          <Logo color={true} />
+        </div>
+      </Link>
     </div>
   );
 };

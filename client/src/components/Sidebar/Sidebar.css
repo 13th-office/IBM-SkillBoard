@@ -25,3 +25,8 @@
   padding-inline: 1.1rem;
   color: white;
 }
+
+.logo-sidebar {
+  display: flex;
+  justify-content: center;
+}
