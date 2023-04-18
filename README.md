@@ -1,6 +1,10 @@
 # IBM SkillBoard
 
-## Set up MongoDB
+## Set up database
+
+Using your MongoDB manager or provider create a database for the IBM SkillBoard as well as an user with at least the `readWrite` role on the database. Create the collections listed in `/database/create_collections.js`.
+
+### Helper script
 
 - Create `/database/.env` from template files `/database/example.env`.
     - This script runs under the assumption that the MongoDB instance is new.
