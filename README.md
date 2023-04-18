@@ -83,21 +83,98 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
 Note: if an endpoint is not listed here, a complete list can be retrieved by running `bin/rails routes`.
 
 - Authentication
-    - POST /api/v1/login?email=string&password=string
-        - Returns 200 OK and `Set-Cookie` header containing `_session_id: <SESSION_ID>` if successful
-        - Returns 401 Unauthorized if unsuccessful
-    - POST /api/v1/logout
-        - Returns 200 OK
+    - `POST /api/v1/login`: Log in
+        - Request
+            ```json
+            JSON body:
+                {
+                    "email": "july@ibm.com",
+                    "password": "abc123"
+                }
+            ```
+        - Response
+            ```json
+            Relevant headers:
+                Set-Cookie: _session_id=ABCDEF012345; path=/; HttpOnly; SameSite=Lax
+            
+            On failure:
+                Status: 401 Unauthorized
+                JSON body: { "error": "Bad login credentials" }
+            ```
+    - `POST /api/v1/logout`: Log out
 - Users
-    - GET /api/v1/users
-        - Returns JSON with all users in the 'users' collection
-    - GET /api/v1/users/:id
-        - Returns JSON of user if found
-    - POST /api/v1/users?username=string&email=string&password=string
-        - Creates user in database
-    - PUT /api/v1/users/:id?`field`=`content`
-        - Updates user's `field` with new `content`
-    - DELETE /api/v1/users/:id
-        - Deletes user from database
+    - `GET /api/v1/users`: Fetch all users
+        - Response
+            ```json
+            Status: 200 OK
+            JSON body:
+                [
+                    {
+                        "_id": { "$oid": "643ea304d2f1c13ab257a43d" },
+                        "name": "Julia Montemayor",
+                        "email": "july@ibm.com",
+                        "created_at": "2023-04-18T14:02:44.852Z",
+                        "updated_at": "2023-04-18T14:02:44.852Z"
+                    },
+                    ...
+                ]
+            ```
+    - `GET /api/v1/users/:id`: Fetch user info
+        - Response
+            ```json
+            JSON body:
+                {
+                    "_id": { "$oid": "643ea304d2f1c13ab257a43d" },
+                    "name": "Julia Montemayor",
+                    "email": "july@ibm.com",
+                    "created_at": "2023-04-18T14:02:44.852Z",
+                    "updated_at": "2023-04-18T14:02:44.852Z"
+                }
+            ```
+
+    - `POST /api/v1/users`: Create user
+        - Request
+            ```json
+            JSON body:
+            {
+                "name": "Julia Montemayor",
+                "email": "july@ibm.com"
+            }
+            ```
+        - Reponse
+            ```json
+            JSON body:
+                {
+                    "_id": { "$oid": "643ea1efd2f1c13ab257a43c" },
+                    "name": "Julia Montemayor",
+                    "email": "july@ibm.com",
+                    "created_at": "2023-04-18T13:58:07.377Z",
+                    "updated_at": "2023-04-18T13:58:07.377Z"
+                }
+            ```
+    - `PUT /api/v1/users/:id`: Update user
+        - Request
+            ```json
+            JSON body:
+            {
+                "name": "Julia Montemenor"
+            }
+            ```
+        - Response
+            ```json
+            JSON body:
+                {
+                    "_id": { "$oid": "643ea1efd2f1c13ab257a43c" },
+                    "name": "Julia Montemenor",
+                    "email": "july@ibm.com",
+                    "created_at": "2023-04-18T13:58:07.377Z",
+                    "updated_at": "2023-04-18T14:03:28.958Z"
+                }
+            ```
+    - `DELETE /api/v1/users/:id`: Delete user
+        - Response
+            ```json
+            Status: 204 No Content
+            ```
 
 ✨ Documentation is my passion ✨
