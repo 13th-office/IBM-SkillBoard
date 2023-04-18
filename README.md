@@ -45,15 +45,15 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
     ```
     - Expected output:
         ```
-        category
+        categories
         certificateCategory
         certificateEmployee
         certificates
-        employee
+        employees
         employeeTeam
         managerTeam
-        team
-        user
+        teams
+        users
         ```
 
 ## Set up your bestfriend Ruby!

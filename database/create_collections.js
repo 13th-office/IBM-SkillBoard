@@ -1,10 +1,10 @@
 db = db.getSiblingDB(process.env["DB_NAME"]);
 
-db.createCollection("employee")
-db.createCollection("user")
-db.createCollection("team")
+db.createCollection("employees")
+db.createCollection("users")
+db.createCollection("teams")
 db.createCollection("certificates")
-db.createCollection("category")
+db.createCollection("categories")
 
 db.createCollection("certificateCategory")
 db.createCollection("certificateEmployee")
