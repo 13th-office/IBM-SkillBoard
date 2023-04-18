@@ -1,6 +1,6 @@
-.dashboard-screen {
+.background-screen {
   background-color: #ffffff;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background-image: url("../../../assets/background-general.png");
   background-size: cover;

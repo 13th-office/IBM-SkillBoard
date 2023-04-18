@@ -31,7 +31,7 @@ const Sidebar = () => {
         />
         <SidebarSection
           name={"My Team"}
-          path={"/myteam"}
+          path={"/myteams"}
           icon={<AiOutlineApartment size={iconSize} />}
         />
         <SidebarSection

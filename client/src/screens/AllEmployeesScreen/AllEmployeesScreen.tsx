@@ -1,7 +1,5 @@
-import React from "react";
-
 const AllEmployeesScreen = () => {
-  return <div>AllEmployeesScreen</div>;
+  return <div className="background-screen">AllEmployeesScreen</div>;
 };
 
 export default AllEmployeesScreen;
