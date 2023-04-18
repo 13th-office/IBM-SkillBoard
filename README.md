@@ -6,7 +6,7 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
 
 ### Helper script
 
-- Create `/database/.env` from template files `/database/example.env`.
+- Create `/database/.env` from template file `/database/example.env`.
     - This script runs under the assumption that the MongoDB instance is new.
     - Populate username and password fields with the new desired values.
 - Install MongoDB.
