@@ -11,8 +11,6 @@ import { UserContext } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const iconSize = "1.6rem";
-
   const { setUser } = useContext(UserContext);
 
   const handleLogOut = () => {
@@ -27,17 +25,17 @@ const Sidebar = () => {
         <SidebarSection
           name={"Dashboard"}
           path={"/"}
-          icon={<IoBarChartOutline size={iconSize} />}
+          icon={<IoBarChartOutline size={"1.6rem"} />}
         />
         <SidebarSection
           name={"My Team"}
           path={"/myteams"}
-          icon={<AiOutlineApartment size={iconSize} />}
+          icon={<AiOutlineApartment size={"1.6rem"} />}
         />
         <SidebarSection
           name={"Employees"}
           path={"/allemployees"}
-          icon={<AiOutlineTeam size={iconSize} />}
+          icon={<AiOutlineTeam size={"1.6rem"} />}
         />
       </div>
       <button className="logout-button gap-2" onClick={handleLogOut}>
