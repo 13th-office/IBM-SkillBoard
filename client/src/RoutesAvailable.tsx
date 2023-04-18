@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import LoginScreen from "./screens/LoginScreen";
 import { useContext } from "react";
 import { UserContext } from "./contexts/UserContext";
@@ -15,6 +15,7 @@ const RoutesAvailable = () => {
     return (
       <Routes>
         <Route path="/" element={<LoginScreen />}></Route>
+        <Route path="/*" element={<Navigate to="/" />} />
       </Routes>
     );
   } else {
