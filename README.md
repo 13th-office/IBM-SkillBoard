@@ -95,8 +95,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         - Returns JSON of user if found
     - POST /api/v1/users?username=string&email=string&password=string
         - Creates user in database
-    - PUT /api/v1/users/:id?field=content
-        - Updates user's field with new content
+    - PUT /api/v1/users/:id?`field`=`content`
+        - Updates user's `field` with new `content`
     - DELETE /api/v1/users/:id
         - Deletes user from database
 
