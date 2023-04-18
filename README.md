@@ -136,10 +136,10 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         - Request
             ```json
             JSON body:
-            {
-                "name": "Julia Montemayor",
-                "email": "july@ibm.com"
-            }
+                {
+                    "name": "Julia Montemayor",
+                    "email": "july@ibm.com"
+                }
             ```
         - Reponse
             ```json
@@ -156,9 +156,9 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         - Request
             ```json
             JSON body:
-            {
-                "name": "Julia Montemenor"
-            }
+                {
+                    "name": "Julia Montemenor"
+                }
             ```
         - Response
             ```json
