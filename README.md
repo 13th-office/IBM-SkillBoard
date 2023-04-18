@@ -176,5 +176,97 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
             ```json
             Status: 204 No Content
             ```
+- Certificates
+    - `GET /api/v1/certificates`: Fetch all certificates
+        - Response
+            ```json
+            Status: 200 OK
+            JSON body:
+                [
+                    {
+                        "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
+                        "name": "Watson Specialist v1",
+                        "type": "ibm",
+                        "expiration_date": "2024-04-01",
+                        "created_at": "2023-04-18T20:31:24.184Z",
+                        "updated_at": "2023-04-18T20:31:24.184Z"
+                    },
+                    ...
+                ]
+            ```
+    - `GET /api/v1/certificates/:id`: Fetch certificate info
+        - Response
+            ```json
+            JSON body:
+                {
+                    "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
+                    "name": "Watson Specialist v1",
+                    "type": "ibm",
+                    "expiration_date": "2024-04-01",
+                    "created_at": "2023-04-18T20:31:24.184Z",
+                    "updated_at": "2023-04-18T20:31:24.184Z"
+                }
+            ```
+
+    - `POST /api/v1/certificates`: Create certificate
+        - Request
+            ```json
+            JSON body:
+                {
+                    "name": "Watson Specialist v1",
+                    "type": "ibm",
+                    "expiration_date": "2024-4-1"
+                }
+
+            On failure:
+                Status: 422 Unprocessable Entity
+                JSON body:
+                    {
+                        "name": [
+                            "is too short (minimum is 3 characters)"
+                        ],
+                        "type": [
+                            "can't be blank",
+                            "must be either ibm or industry"
+                        ]
+                    }
+            ```
+        - Reponse
+            ```json
+            JSON body:
+                {
+                    "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
+                    "name": "Watson Specialist v1",
+                    "type": "ibm",
+                    "expiration_date": "2024-04-01",
+                    "created_at": "2023-04-18T13:58:07.377Z",
+                    "updated_at": "2023-04-18T13:58:07.377Z"
+                }
+            ```
+    - `PUT /api/v1/certificates/:id`: Update certificate
+        - Request
+            ```json
+            JSON body:
+                {
+                    "expiration_date": "2024-4-3'"
+                }
+            ```
+        - Response
+            ```json
+            JSON body:
+                {
+                    "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
+                    "name": "Watson Specialist v1",
+                    "type": "ibm",
+                    "expiration_date": "2024-04-30",
+                    "created_at": "2023-04-18T13:58:07.377Z",
+                    "updated_at": "2023-04-18T20:50:18.635Z"
+                }
+            ```
+    - `DELETE /api/v1/certificates/:id`: Delete certificate
+        - Response
+            ```json
+            Status: 204 No Content
+            ```
 
 ✨ Documentation is my passion ✨
