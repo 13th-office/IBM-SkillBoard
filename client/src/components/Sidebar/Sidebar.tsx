@@ -38,15 +38,17 @@ const Sidebar = () => {
           icon={<AiOutlineTeam size={"1.6rem"} />}
         />
       </div>
-      <button className="logout-button gap-2" onClick={handleLogOut}>
-        <BsBoxArrowLeft />
-        <p>Log out</p>
-      </button>
-      <Link className="logo-sidebar" to="/">
-        <div className="w-1/2 hover:scale-105 ease-in-out duration-300">
-          <Logo color={true} />
-        </div>
-      </Link>
+      <div className="flex flex-col items-center">
+        <button className="logout-button gap-2 mb-5" onClick={handleLogOut}>
+          <BsBoxArrowLeft />
+          <p>Log out</p>
+        </button>
+        <Link className="logo-sidebar" to="/">
+          <div className="w-1/2 hover:scale-105 ease-in-out duration-300">
+            <Logo color={true} />
+          </div>
+        </Link>
+      </div>
     </div>
   );
 };

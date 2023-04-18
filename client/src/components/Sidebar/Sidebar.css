@@ -20,6 +20,7 @@
 .logout-button {
   display: flex;
   align-items: center;
+  width: 7rem;
   margin-top: 15rem;
   background-color: #002d9c;
   padding-block: 0.25rem;

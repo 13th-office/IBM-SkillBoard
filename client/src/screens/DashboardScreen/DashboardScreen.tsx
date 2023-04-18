@@ -1,4 +1,4 @@
-import CertificationRow from "../../components/CertificationRow/CertificationRow";
+import Header from "../../components/Header/Header";
 import "./DashboardScreen.css";
 
 const certificate = {
@@ -13,7 +13,11 @@ const certificate = {
 };
 
 const DashboardScreen = () => {
-  return <div className="background-screen">Dashboard</div>;
+  return (
+    <div className="background-screen">
+      <Header />
+    </div>
+  );
 };
 
 export default DashboardScreen;
