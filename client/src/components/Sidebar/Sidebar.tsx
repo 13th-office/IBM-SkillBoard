@@ -19,7 +19,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="sidebar">
+    <div className="sidebar rounded-e-md">
       <SidebarProfileContainer />
       <div className="sidebar-sections gap-1">
         <SidebarSection
