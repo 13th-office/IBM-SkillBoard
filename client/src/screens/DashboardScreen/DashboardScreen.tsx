@@ -15,7 +15,7 @@ const certificate = {
 const DashboardScreen = () => {
   return (
     <div className="background-screen">
-      <Header />
+      <Header title={"Dashboard"} />
     </div>
   );
 };
