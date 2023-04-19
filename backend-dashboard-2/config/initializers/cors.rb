@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*" #Where React app is
+    origins "<%= ENV["REACT_ROUTE"] %>" #Where React app is
 
     resource "*",
       headers: :any,
