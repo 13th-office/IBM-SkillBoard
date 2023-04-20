@@ -1,0 +1,6 @@
+.profile-info-card {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  background-color: #f4f4f4;
+}

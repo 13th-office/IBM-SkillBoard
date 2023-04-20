@@ -1,0 +1,8 @@
+.profile-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 5rem;
+  background-color: antiquewhite;
+  justify-content: space-between;
+}
