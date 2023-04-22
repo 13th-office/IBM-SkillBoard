@@ -1,6 +1,37 @@
 .profile-info-card {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 48%;
   background-color: #f4f4f4;
+}
+
+.profile-picture-half {
+  display: flex;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-info-picture {
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  padding: 1.5rem;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.profile-info-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 60%;
+  background-color: aquamarine;
+  padding: 0.5rem;
+}
+
+.profile-info-labeled-container {
+  background-color: white;
 }

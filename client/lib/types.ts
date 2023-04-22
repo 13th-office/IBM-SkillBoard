@@ -19,3 +19,11 @@ export interface User {
   lastName: string;
   email: string;
 }
+
+export interface UserInfo {
+  name: string;
+  last_name: string;
+  role: string;
+  manager: string;
+  email: string;
+}
