@@ -13,3 +13,7 @@
   width: 20%;
   max-width: 20%;
 }
+
+.select-style {
+  border: 0;
+}
