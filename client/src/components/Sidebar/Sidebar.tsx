@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./Sidebar.css";
 import SidebarProfileContainer from "../SidebarProfileContainer";
 import SidebarSection from "../SidebarSection/SidebarSection";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { setUser } = useContext(UserContext);
+  const [selectedSection, setSelectedSection] = useState("Dashboard");
 
   const handleLogOut = () => {
     localStorage.removeItem(SESSION_KEY);
@@ -26,16 +27,22 @@ const Sidebar = () => {
           name={"Dashboard"}
           path={"/"}
           icon={<IoBarChartOutline size={"1.6rem"} />}
+          selectedSection={selectedSection}
+          setSelectedSection={setSelectedSection}
         />
         <SidebarSection
           name={"My Team"}
           path={"/myteams"}
           icon={<AiOutlineApartment size={"1.6rem"} />}
+          selectedSection={selectedSection}
+          setSelectedSection={setSelectedSection}
         />
         <SidebarSection
           name={"Employees"}
           path={"/allemployees"}
           icon={<AiOutlineTeam size={"1.6rem"} />}
+          selectedSection={selectedSection}
+          setSelectedSection={setSelectedSection}
         />
       </div>
       <div className="flex flex-col items-center">
