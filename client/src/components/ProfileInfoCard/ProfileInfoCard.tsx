@@ -6,6 +6,7 @@ interface Props {
 }
 
 const ProfileInfoCard = ({ userInfo }: Props) => {
+  console.log(localStorage.getItem("session_key"));
   return (
     <div className="profile-info-card">
       <div className="profile-picture-half">
@@ -15,7 +16,7 @@ const ProfileInfoCard = ({ userInfo }: Props) => {
         </div>
       </div>
       <div className="profile-info-half gap-2">
-        <p>
+        <p className="profile-info-card-name">
           {userInfo.name} {userInfo.last_name}
         </p>
         <p>{userInfo.role}</p>

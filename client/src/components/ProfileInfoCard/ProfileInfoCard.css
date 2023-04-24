@@ -7,19 +7,24 @@
 
 .profile-picture-half {
   display: flex;
-  width: 40%;
+  width: 35%;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
 .profile-info-picture {
+  display: flex;
   color: white;
   background-color: black;
   border-radius: 50%;
   padding: 1.5rem;
-  font-size: xx-large;
+  width: 9rem;
+  height: 9rem;
+  font-size: 4rem;
   font-weight: bold;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-info-half {
@@ -27,11 +32,16 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  width: 60%;
+  width: 65%;
   background-color: aquamarine;
   padding: 0.5rem;
 }
 
 .profile-info-labeled-container {
   background-color: white;
+}
+
+.profile-info-card-name {
+  font-weight: bolder;
+  font-size: x-large;
 }
