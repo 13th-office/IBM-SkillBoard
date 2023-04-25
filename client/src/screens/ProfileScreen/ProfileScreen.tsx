@@ -4,7 +4,7 @@ import ProfileContainer from "../../components/ProfileContainer";
 const ProfileScreen = () => {
   return (
     <div className="background-screen">
-      <Header title={"My Team"} />
+      <Header title={"Profile"} />
       <ProfileContainer />
     </div>
   );

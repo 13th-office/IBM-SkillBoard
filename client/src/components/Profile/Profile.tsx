@@ -6,7 +6,6 @@ const infoDummy = {
   name: "Cristiano",
   last_name: "Ronaldo",
   role: "Bicho",
-  manager: "Camello",
   email: "cr7@ibm.com",
 };
 
@@ -14,7 +13,7 @@ const Profile = () => {
   return (
     <div>
       <div className="profile-container flex-2">
-        <ProfileInfoCard userInfo={infoDummy} />
+        <ProfileInfoCard user={infoDummy} />
         <ProfileTeamCard />
       </div>
       <div></div>
