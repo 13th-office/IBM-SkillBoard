@@ -1,6 +1,5 @@
 import React from "react";
 import DashboardTable from "./DashboardTable/DashboardTable";
-import { Certificates } from "../../lib/types";
 
 const DashboardTableContainer = () => {
   const certificates = [
@@ -126,7 +125,7 @@ const DashboardTableContainer = () => {
     },
   ];
 
-  return <DashboardTable certificates={{ certificates }} />;
+  return <DashboardTable certificates={certificates} />;
 };
 
 export default DashboardTableContainer;

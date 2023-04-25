@@ -1,11 +1,11 @@
 import CertificationRow from "../CertificationRow/CertificationRow";
-import { Certificates } from "../../../lib/types";
+import { Certificate } from "../../../lib/types";
 import "./DashboardTable.css";
 import { BsCircleFill } from "react-icons/bs";
 import Select from "react-select";
 import { useState } from "react";
 interface Props {
-  certificates: Certificates;
+  certificates: Certificate[];
 }
 
 interface Colors {
@@ -81,7 +81,7 @@ const DashboardTable = ({ certificates }: Props) => {
         <p className="font-semibold text-sm">Industry compatiblity</p>
       </div>
       <div className="overflow-y-auto overflow-x-hidden">
-        {certificates["certificates"].map((certificate, index) => (
+        {certificates.map((certificate, index) => (
           <CertificationRow
             key={`${certificate.id}`}
             certificate={certificate}
