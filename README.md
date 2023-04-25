@@ -85,6 +85,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
 
 ### Authentication
 
+- Endpoints requiring authentication read `_session_id` header, which is sent automatically by the browser once the user is logged in. Otherwise, `Status: 401 Unauthorized` and `{ "error" : "Authentication required" }` are returned.
+
 - `POST /api/v1/login`: Log in
     - Request
         ```json
@@ -107,6 +109,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
 
 ### Users
 
+- All Users requests require authentication.
+
 - `GET /api/v1/users`: Fetch all users
     - Response
         ```json
@@ -122,6 +126,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
                 },
                 ...
             ]
+        
+        If not logged in:
         ```
 - `GET /api/v1/users/:id`: Fetch user info
     - Response
@@ -182,6 +188,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         ```
 
 ### Certificates
+
+- All Users requests require authentication.
 
 - `GET /api/v1/certificates`: Fetch all certificates
     - Response
