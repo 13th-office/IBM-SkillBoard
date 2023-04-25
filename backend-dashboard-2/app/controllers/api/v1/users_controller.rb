@@ -15,7 +15,7 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(name: params[:name], email: params[:email])
+    @user = User.new(id: params[:id], email: params[:email])
 
     if @user.save
       render json: @user, status: :created, location: api_v1_user_url(@user)
