@@ -1,13 +1,17 @@
 import React from "react";
 import SidebarProfile from "./SidebarProfile/SidebarProfile";
 
+const id = "cr7id";
 const name = "Cristiano";
-const lastName = "Ronaldo";
+const last_name = "Ronaldo";
 const email = "elbicho@ibm.com";
+const role = "Bicho Manager";
 const user = {
+  id,
   name,
-  lastName,
+  last_name,
   email,
+  role,
 };
 
 const SidebarProfileContainer = () => {
