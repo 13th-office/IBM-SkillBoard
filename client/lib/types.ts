@@ -24,3 +24,13 @@ export interface User {
   email: string;
   role: string;
 }
+
+export interface Team {
+  id: string;
+  team_name: string;
+}
+
+export interface TeamWithManager {
+  team: Team;
+  manager: User;
+}
