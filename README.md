@@ -64,6 +64,7 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
 - Create `/backend-dashboard/config/application.yml` from template file `/backend-dashboard/config/example.application.yml`
     - Populate `DB_` fields with the database access data.
     - Populate `FIREBASE_KEY` field with the API key for the authentication service.
+    - Populate `REACT_ROUTE` field with comma-separated routes of the front end (no spaces).
 - Launch the server by running `bin/rails server`
 
 ## Run the back end (MongoDB and Ruby)
