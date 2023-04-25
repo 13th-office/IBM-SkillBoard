@@ -1,4 +1,5 @@
 class Api::V1::CertificatesController < ApplicationController
+    include Authentication
     before_action :set_certificate, only: %i[ show update destroy ]
 
     # GET /certificates
