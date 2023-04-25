@@ -10,7 +10,23 @@
 .profile-team-card-title {
   font-weight: bold;
   font-size: x-large;
+  margin-bottom: 0.5rem;
 }
 
 .profile-team-card-team-cell {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-block: 0.4rem;
+  align-items: center;
+  border-bottom-width: 0.1px;
+  border-bottom-color: lightgray;
+}
+
+.profile-team-card-team-manager {
+  font-size: small;
+}
+
+.profile-team-card-team-container {
+  width: 90%;
 }
