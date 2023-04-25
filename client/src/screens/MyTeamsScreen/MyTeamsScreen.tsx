@@ -3,8 +3,9 @@ import TeamRow from "../../components/TeamRow/TeamRow";
 
 const MyTeamsScreen = () => {
   const dummyData = {
+    id: "iddummyjijijijiji",
     name: "Juan Pablo",
-    lastName: "Perez Duran",
+    last_name: "Perez Duran",
     email: "jppd@ibm.mx",
     role: "Front-End Developer",
   };
