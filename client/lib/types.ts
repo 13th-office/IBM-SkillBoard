@@ -14,8 +14,13 @@ export interface Category {
   id: string;
   name: string;
 }
+export interface Certificates {
+  certificates: Certificate[];
+}
 export interface User {
+  id: string;
   name: string;
-  lastName: string;
+  last_name: string;
   email: string;
+  role: string;
 }

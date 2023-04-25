@@ -12,9 +12,11 @@ const SidebarProfile = ({ user }: Props) => {
   return (
     <Link to="/profile">
       <div className="sidebar-profile gap-3">
-        <div className="profile-picture">{user.name[0] + user.lastName[0]}</div>
+        <div className="profile-picture">
+          {user.name[0] + user.last_name[0]}
+        </div>
         <div className="user-info">
-          <div>{user.name + " " + user.lastName}</div>
+          <div>{user.name + " " + user.last_name}</div>
           <div>{user.email}</div>
         </div>
       </div>

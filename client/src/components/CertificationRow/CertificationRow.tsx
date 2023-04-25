@@ -1,5 +1,6 @@
 import { Category, Certificate } from "../../../lib/types";
 import "./CertificationRow.css";
+import { BsCircleFill } from "react-icons/bs";
 interface Props {
   certificate: Certificate;
 }
@@ -11,23 +12,22 @@ interface Colors {
 }
 
 const colors: Colors = {
-  IBM: "certification-row-ibm",
-  MyTeam: "certification-row-myteam",
-  Industry: "certification-row-industry",
+  IBM: "#001756",
+  MyTeam: "#b40000",
+  Industry: "#658eff",
 };
 
 const CertificationRow = ({ certificate }: Props) => {
   return (
-    <div className="certification-row-general drop-shadow-md gap-40">
-      <div
-        className={` w-3 h-3 rounded-md ${
-          colors[certificate.type as keyof Colors]
-        }`}
-      ></div>
-      <p className="certification-row-name font-medium w-40">
-        {certificate.name}
-      </p>
+    <div className="certification-row-general drop-shadow-md hover:scale-105 ease-in-out duration-150">
+      <div>
+        <BsCircleFill color={colors[certificate.type as keyof Colors]} />
+      </div>
+
+      <p className="certification-row-name font-medium">{certificate.name}</p>
+
       <p>{certificate.type}</p>
+
       <ul>
         {certificate.categories.map((item, i) => {
           return (
@@ -37,6 +37,7 @@ const CertificationRow = ({ certificate }: Props) => {
           );
         })}
       </ul>
+
       <p>69%</p>
     </div>
   );

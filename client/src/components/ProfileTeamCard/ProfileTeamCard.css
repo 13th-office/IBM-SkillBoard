@@ -1,0 +1,6 @@
+.profile-team-card {
+  display: flex;
+  flex-direction: row;
+  width: 48%;
+  background-color: #f4f4f4;
+}
