@@ -1,19 +1,17 @@
+import { User } from "../../../lib/types";
 import ProfileInfoCard from "../ProfileInfoCard/ProfileInfoCard";
 import ProfileTeamCard from "../ProfileTeamCard/ProfileTeamCard";
 import "./Profile.css";
 
-const infoDummy = {
-  name: "Cristiano",
-  last_name: "Ronaldo",
-  role: "Bicho",
-  email: "cr7@ibm.com",
-};
+interface Props {
+  user: User;
+}
 
-const Profile = () => {
+const Profile = ({ user }: Props) => {
   return (
     <div>
       <div className="profile-container flex-2">
-        <ProfileInfoCard user={infoDummy} />
+        <ProfileInfoCard user={user} />
         <ProfileTeamCard />
       </div>
       <div></div>

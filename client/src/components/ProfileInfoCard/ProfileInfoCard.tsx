@@ -8,7 +8,7 @@ interface Props {
 const ProfileInfoCard = ({ user }: Props) => {
   console.log(localStorage.getItem("session_key"));
   return (
-    <div className="profile-info-card">
+    <div className="profile-info-card drop-shadow-md rounded-md">
       <div className="profile-picture-half">
         <div className="profile-info-picture">
           {user.name[0]}
