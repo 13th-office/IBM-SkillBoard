@@ -9,10 +9,8 @@ interface Props {
 const TeamTable = ({ teams }: Props) => {
   return (
     <div className="flex flex-col justify-start w-full team-card-employees mt-[35px] mb-[35px]">
-      {teams.map((team, index) => (
-        <React.Fragment key={index}>
-          <TeamCard team={team} />
-        </React.Fragment>
+      {teams.map((team) => (
+        <TeamCard team={team} key={team.team.id} />
       ))}
     </div>
   );
