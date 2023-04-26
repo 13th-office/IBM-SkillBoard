@@ -1,3 +1,4 @@
+import React from "react";
 import { TeamWithEmployeesManager } from "../../../lib/types";
 import TeamRow from "../TeamRow/TeamRow";
 import "./TeamCard.css";
@@ -13,8 +14,10 @@ const TeamCard = ({ team }: Props) => {
         <h2 className="font-bold text-[1.2rem]">{team.team.team_name}</h2>
       </div>
       <div className="flex flex-col justify-start w-full overflow-y-scroll team-card-employees">
-        {team.employees.map((user) => (
-          <TeamRow user={user} />
+        {team.employees.map((user, index) => (
+          <React.Fragment key={index}>
+            <TeamRow user={user} />
+          </React.Fragment>
         ))}
       </div>
     </div>
