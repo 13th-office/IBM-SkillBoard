@@ -14,7 +14,6 @@
 .profile-certifications-cards {
   display: flex;
   flex-direction: row;
-  width: 80vw;
 }
 
 .profile-certifications-card {
