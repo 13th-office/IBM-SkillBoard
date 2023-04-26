@@ -31,8 +31,9 @@ module BackendDashboard2
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::Cookies, same_site: :none, secure: :true
+    config.middleware.use ActionDispatch::Session::CookieStore, same_site: :none, secure: :true
+    
 
 
     # Only loads a smaller set of middleware suitable for API only apps.
