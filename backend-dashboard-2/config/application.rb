@@ -35,7 +35,7 @@ module BackendDashboard2
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore) do
       |middleware|
-      middleware = ActionDispatch::Session::CookieStore.new(middleware, same_site: :none, secure: :true)
+      middleware = ActionDispatch::Session::CookieStore.new(middleware, same_site: :none, secure: :false)
     end
     
 
