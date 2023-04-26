@@ -1,6 +1,7 @@
 import { Certificate, TeamWithManager, User } from "../../../lib/types";
 import ProfileInfoCard from "../ProfileInfoCard/ProfileInfoCard";
 import ProfileTeamCard from "../ProfileTeamCard/ProfileTeamCard";
+import ProfileCertifications from "../ProfileCertifications/ProfileCertifications";
 import "./Profile.css";
 
 interface Props {
@@ -16,7 +17,7 @@ const Profile = ({ user, teamWithManager, certificates }: Props) => {
         <ProfileInfoCard user={user} />
         <ProfileTeamCard teamWithManager={teamWithManager} />
       </div>
-      <div></div>
+      <ProfileCertifications user={user} certificates={certificates} />
     </div>
   );
 };

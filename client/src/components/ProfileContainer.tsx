@@ -130,6 +130,76 @@ const profile_info = {
       ],
       expiration_date: "2024-04-01",
     },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
+    {
+      id: "56",
+      name: "AWS Certification",
+      type: "Industry",
+      categories: [
+        { id: "431", name: "Amazon" },
+        { id: "67", name: "DevOps" },
+      ],
+      expiration_date: "2024-04-01",
+    },
   ],
 };
 
