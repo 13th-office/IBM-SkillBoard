@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  include Authentication
+  # include Authentication
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
@@ -16,14 +16,17 @@ class Api::V1::UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(id: params[:id], email: params[:email], employee_id: params[:employee_id])
-
-    if @user.save
-      render json: @user, status: :created, location: api_v1_user_url(@user)
+    @user = User.new(email: params[:email], employee_id: params[:employee_id])
+    @employee = Employee.find(params[:employee_id])
+    if @employee.present?
+      if @user.save
+        render json: @user, status: :created, location: api_v1_user_url(@user)
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
     else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: @employee, status: :unprocessable_entity
     end
-    
   end
 
   # PATCH/PUT /users/1
@@ -48,6 +51,6 @@ class Api::V1::UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.fetch(:user).permit(:id, :email, :employee_id)
+      params.fetch(:user).permit(:email, :employee_id)
     end
 end
