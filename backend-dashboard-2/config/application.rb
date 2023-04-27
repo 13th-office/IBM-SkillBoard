@@ -33,10 +33,6 @@ module BackendDashboard2
     # config.eager_load_paths << Rails.root.join("extras")
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
-    config.middleware.insert_after(ActionDispatch::Cookies, ActionDispatch::Session::CookieStore) do
-      |middleware|
-      middleware = ActionDispatch::Session::CookieStore.new(middleware, same_site: :none, secure: :true)
-    end
     
 
 
