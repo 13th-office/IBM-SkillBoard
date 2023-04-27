@@ -175,7 +175,7 @@ development:
 test:
   clients:
     default:
-      database: backend_dashboard2_test
+      uri: <%= ENV["DB_URI"] %>
       hosts:
       options:
         read:
