@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :id, type: String
+  identity :type => String, :default => ->{ BSON::ObjectId.new.to_s }
   field :email, type: String
-  field :employee_id, type: String
+  belongs_to :employees, class_name: "Employee", foreign_key: "employee_id"
 end
