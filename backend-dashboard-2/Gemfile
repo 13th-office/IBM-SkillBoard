@@ -6,11 +6,10 @@ ruby "3.0.2"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 
-#White list for React
-gem 'rack-cors'
-
 # MongoDB gem
 gem 'mongoid','~>8.0.3'
+
+
 
 gem 'webpacker','~>3.0'
 

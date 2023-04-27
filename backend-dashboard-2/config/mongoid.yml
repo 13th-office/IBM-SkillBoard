@@ -4,16 +4,16 @@ development:
     # Defines the default client. (required)
     default:
       # Mongoid can connect to a URI accepted by the driver:
-      # uri: mongodb://user:password@mongodb.domain.com:27017/backend_dashboard2_development
+      uri: <%= ENV["DB_URI"] %>
       # Otherwise define the parameters separately.
       # This defines the name of the default database that Mongoid can connect to.
       # (required).
-      database: <%= ENV["DB_NAME"] %>
+      # database: <%= ENV["DB_NAME"] %>
       # Provides the hosts the default client can connect to. Must be an array
       # of host:port pairs. (required)
-      hosts:
-        - <%= ENV["DB_HOST"] %>
-      options:
+      # hosts:
+      #   - <%= ENV["DB_HOST"] %>
+      # options:
         # Note that all options listed below are Ruby driver client options (the mongo gem).
         # Please refer to the driver documentation of the version of the mongo gem you are using
         # for the most up-to-date list of options.
@@ -31,24 +31,24 @@ development:
         #     - use: web
 
         # The name of the user for authentication.
-        user: <%= ENV["DB_USER"] %>
+        # user: <%= ENV["DB_USER"] %>
 
         # The password of the user for authentication.
-        password: <%= ENV["DB_PASS"] %>
+        # password: <%= ENV["DB_PASS"] %>
 
-        # The user's database roles.
-        roles:
-          - 'readWrite'
+        # # The user's database roles.
+        # roles:
+        #   - 'readWrite'
 
         # Change the default authentication mechanism. Valid options are: :scram,
         # :mongodb_cr, :mongodb_x509, and :plain. Note that all authentication
         # mechanisms require username and password, with the exception of :mongodb_x509.
         # Default on mongoDB 3.0 is :scram, default on 2.4 and 2.6 is :plain.
-        auth_mech: :scram
+        # auth_mech: :scram
 
         # The database or source to authenticate the user against.
         # (default: the database specified above or admin)
-        auth_source: <%= ENV["DB_NAME"] %>
+        # auth_source: <%= ENV["DB_NAME"] %>
 
         # Force a the driver cluster to behave in a certain manner instead of auto-
         # discovering. Can be one of: :direct, :replica_set, :sharded. Set to :direct
@@ -63,7 +63,7 @@ development:
         # local_threshold: 0.015
 
         # The timeout in seconds for selecting a server for an operation. (default: 30)
-        server_selection_timeout: 1
+        # server_selection_timeout: 1
 
         # The maximum number of connections in the connection pool. (default: 5)
         # max_pool_size: 5
@@ -177,7 +177,6 @@ test:
     default:
       database: backend_dashboard2_test
       hosts:
-        - localhost:27017
       options:
         read:
           mode: :primary
