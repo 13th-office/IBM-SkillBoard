@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProfileCertifications.css";
 import { Certificate, User } from "../../../lib/types";
+import ProfileCertificationCard from "../ProfileCertificationCard/ProfileCertificationCard";
 
 interface Props {
   user: User;
@@ -16,14 +17,9 @@ const ProfileCertifications = ({ user, certificates }: Props) => {
       <div className="profile-certifications-cards gap-5 overflow-x-auto">
         {certificates.map((certificate, index) => (
           <React.Fragment key={index}>
-            <div className="profile-certifications-card shadow-md object-fill">
-              {certificate.name}
-            </div>
+            <ProfileCertificationCard certificate={certificate} />
           </React.Fragment>
         ))}
-        {/* <div className="profile-certifications-card shadow-md object-fill">
-          Siuuuuu
-        </div> */}
       </div>
     </div>
   );
