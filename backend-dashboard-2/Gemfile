@@ -9,7 +9,7 @@ gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 # MongoDB gem
 gem 'mongoid','~>8.0.3'
 
-gem 'psych', '< 4'
+
 
 gem 'webpacker','~>3.0'
 
