@@ -1,4 +1,3 @@
-import React from "react";
 import "./ProfileCertificationCard.css";
 import { Certificate } from "../../../lib/types";
 
