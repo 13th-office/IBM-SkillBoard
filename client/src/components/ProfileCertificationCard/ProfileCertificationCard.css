@@ -2,4 +2,26 @@
   background-color: #f4f4f4;
   height: 20rem;
   min-width: 18rem;
+  padding: 0 1rem;
+}
+
+.profile-certifications-card-title {
+  height: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-color: lightgray;
+  border-bottom-width: 2px;
+}
+
+.profile-certifications-card-data {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.profile-certifications-card-section {
+  width: 50%;
+  text-align: center;
 }
