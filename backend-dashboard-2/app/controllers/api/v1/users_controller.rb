@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  # include Authentication
+  include Authentication
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
@@ -25,7 +25,7 @@ class Api::V1::UsersController < ApplicationController
         render json: @user.errors, status: :unprocessable_entity
       end
     else
-      render json: @employee, status: :unprocessable_entity
+      render json: "Cannot be nill, create Employee for this user", status: :unprocessable_entity
     end
   end
 

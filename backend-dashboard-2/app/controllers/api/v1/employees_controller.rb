@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApplicationController
-  # include Authentication
+  include Authentication
   before_action :set_employee, only: %i[ show update destroy ]
 
   # GET /employees
