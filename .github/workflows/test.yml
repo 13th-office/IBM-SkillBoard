@@ -1,0 +1,51 @@
+name: Run Tests
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+  workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
+
+jobs:
+  test-client:
+    runs-on: ubuntu-latest
+    name: Run React client tests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use client directory
+        run: cd client/
+
+      # Add React test suite setup
+
+      - name: Run tests
+        run: ./run_test.sh
+
+      - name: Send Discord message on failure
+        if: ${{ failure() && inputs.environment == 'production' }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ React Deployment Tests Failed"
+
+  test-server:
+    runs-on: ubuntu-latest
+    name: Run Ruby server tests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Use client directory
+        run: cd backend-dashboard-2/
+
+      # Add Rails test suite setup
+
+      - name: Run tests
+        run: ./run_test.sh
+
+      - name: Send Discord message on failure
+        if: ${{ failure() && inputs.environment == 'production' }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Rails Deployment Tests Failed"
+
