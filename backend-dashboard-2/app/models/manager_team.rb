@@ -7,5 +7,5 @@ class ManagerTeam
   field :team_id, type: String
 
   belongs_to :team
-  belongs_to :employee, class_name: 'Employee'
+  belongs_to :manager, class_name: 'Employee', foreign_key: 'employee_id'
 end

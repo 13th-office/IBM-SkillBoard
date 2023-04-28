@@ -10,7 +10,7 @@ class Api::V1::TeamsController < ApplicationController
 
   # GET /teams/1
   def show
-    render json: @team
+    render json: @team.manager
   end
 
   # POST /teams

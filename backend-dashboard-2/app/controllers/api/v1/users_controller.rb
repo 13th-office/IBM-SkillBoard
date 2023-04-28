@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  include Authentication
+  # include Authentication
   before_action :set_user, only: %i[ show update destroy ]
 
   # GET /users
@@ -10,8 +10,11 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # GET /users/1
+  # In this function we'll get all the information related to this user, employee, team, manager and hopefully certificates
   def show
-    render json: @user
+    @employee = Employee.find_by(id: @user.employee_id)
+    render json: {user: @employee.info, team: @employee.teams}
+
   end
 
   # POST /users

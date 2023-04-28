@@ -6,4 +6,8 @@ class Team
 
   has_many :employee_teams
   has_many :manager_teams
+
+  def manager
+    manager_teams.first&.manager
+  end
 end
