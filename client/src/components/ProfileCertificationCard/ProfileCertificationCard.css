@@ -1,6 +1,7 @@
 .profile-certifications-card {
   background-color: #f4f4f4;
-  height: 20rem;
+  height: 95%;
+  max-height: 95%;
   min-width: 18rem;
   padding: 0 1rem;
 }

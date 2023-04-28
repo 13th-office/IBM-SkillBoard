@@ -3,7 +3,7 @@ import ProfileContainer from "../../components/ProfileContainer";
 
 const ProfileScreen = () => {
   return (
-    <div className="background-screen">
+    <div className="background-screen overflow-hidden">
       <Header title={"Profile"} />
       <ProfileContainer />
     </div>

@@ -1,12 +1,12 @@
 .header-container {
-  height: 10%;
+  height: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .header-content {
-  height: 10%;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;

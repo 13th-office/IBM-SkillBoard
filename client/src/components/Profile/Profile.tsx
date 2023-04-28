@@ -17,7 +17,9 @@ const Profile = ({ user, teamWithManager, certificates }: Props) => {
         <ProfileInfoCard user={user} />
         <ProfileTeamCard teamWithManager={teamWithManager} />
       </div>
-      <ProfileCertifications user={user} certificates={certificates} />
+      <div className="max-h-[50vh] h-[40vh]">
+        <ProfileCertifications user={user} certificates={certificates} />
+      </div>
     </div>
   );
 };
