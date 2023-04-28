@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - dev
+      - cicd-test
   workflow_call:
     inputs:
       environment:
