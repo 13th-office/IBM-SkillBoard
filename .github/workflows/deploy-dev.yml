@@ -11,7 +11,7 @@ jobs:
     uses: ./.github/workflows/test.yml
     secrets: inherit
     with:
-      environment: development
+      environment: dev
   deploy:
     name: Deploy to VPS
     needs: test
@@ -51,8 +51,8 @@ jobs:
 
       - name: Send Discord message on success
         if: ${{ success() }}
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment to \`dev\` VPS successful"
 
       - name: Send Discord message on failure
         if: ${{ failure() }}
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment to VPS Failed"
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment to \`dev\` VPS failed"
