@@ -30,9 +30,9 @@ jobs:
             StrictHostKeyChecking no
           END
         env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_IP: ${{ secrets.SSH_IP }}
+          SSH_USER: ${{ secrets.DEV_SSH_USER }}
+          SSH_PRIVATE_KEY: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+          SSH_IP: ${{ secrets.DEV_SSH_IP }}
 
       - name: Fetch latest commit
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset origin/dev --hard'
