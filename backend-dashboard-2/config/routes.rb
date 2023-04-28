@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+
   namespace :api do
     namespace :v1 do
       resources :users
       resources :employees
       resources :certificates
+      resources :manager_teams
+      resources :employee_teams
+      resources :teams
       # resources :auth
       post "login", to: "auth#login"
       post "logout", to: "auth#logout"

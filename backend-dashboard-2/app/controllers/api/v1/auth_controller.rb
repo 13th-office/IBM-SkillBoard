@@ -27,7 +27,7 @@ class Api::V1::AuthController < ApplicationController
         end
 
       else
-        render status: :unauthorized, json: { error: "Employee not found" }
+        render status: :unprocessable_entity, json: { error: "Employee not found" }
       end
       render status: :ok, json: {idToken: data['idToken']}
     else

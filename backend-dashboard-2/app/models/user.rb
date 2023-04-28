@@ -3,7 +3,6 @@ class User
   include Mongoid::Timestamps
   
   field :id
-  field :employee_id
   field :email, type: String
-  belongs_to :employees, class_name: "Employee", foreign_key: "employee_id"
+  has_one :employee, class_name: "Employee", foreign_key: "employee_id"
 end
