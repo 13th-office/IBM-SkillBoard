@@ -27,8 +27,8 @@ jobs:
         run: ./run_test.sh
 
       - name: Send Discord message on failure
-        if: ${{ failure() && ( inputs.environment == 'development' || inputs.environment == 'production' ) }}
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ React tests for ${{ inputs.environment }} deployment failed"
+        if: ${{ failure() && ( inputs.environment == 'dev' || inputs.environment == 'main' ) }}
+        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ React tests for \`${{ inputs.environment }}\` deployment failed"
 
   test-server:
     runs-on: ubuntu-latest
