@@ -28,9 +28,7 @@ class Employee
   
   def teams #Finds the teams in where the employee is associated to, being a manager or not.
     teams = Team.where(:id.in =>(employee_teams.pluck(:team_id)+manager_teams.pluck(:team_id)))
-    teams.each do |team|
-      return ({team: team, manager: team.manager})
-    end
+    teams.map { |team| { team: team, manager: team.manager } }
   end
 
   field :_id, type: String, default: ->{BSON::ObjectId.new.to_s}
