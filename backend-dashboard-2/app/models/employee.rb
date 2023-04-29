@@ -17,13 +17,13 @@ class Employee
   has_many :certificate_employees, class_name: 'CertificateEmployee', foreign_key: 'employee_id'
 
   def info
-    return({
+    return {
       id: self.id,
       name: self.name,
       last_name: self.last_name,
       email: self.email,
       role: self.role
-    })
+    }
   end
   
   def teams #Finds the teams in where the employee is associated to, being a manager or not.
