@@ -1,0 +1,25 @@
+.employees-filter {
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.employees-filter-search {
+  margin-right: 20px;
+  height: 40px;
+  width: 25%;
+  background-color: #f4f4f4;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.employees-filter-category {
+  margin-right: 20px;
+  border-radius: 10px;
+  width: 15%;
+}
+
+.react-select {
+  color: #7a7a7a;
+}
