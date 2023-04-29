@@ -7,6 +7,13 @@ class Team
   has_many :employee_teams
   has_many :manager_teams
 
+  def info
+    {
+      id: self._id.to_s,
+      name: self.name,
+    }
+  end
+
   def managers
     manager_teams.map { |manager_team| manager_team.manager }
   end
