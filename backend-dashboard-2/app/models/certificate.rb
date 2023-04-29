@@ -20,6 +20,15 @@ class Certificate
     message: "must be either ibm or industry"
   }
 
+  def info
+    {
+      id: self._id.to_s,
+      name: self.name,
+      type: self.type,
+      expiration_date: self.expiration_date,
+    }
+  end
+
   def categories
     categories = Category.where(:_id.in => (certificate_categories.pluck(:certificate_id)))
     # TODO: successfully fetch categories
