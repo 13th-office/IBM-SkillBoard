@@ -12,9 +12,7 @@ class Api::V1::UsersController < ApplicationController
   # GET /users/1
   # In this function we'll get all the information related to this user, employee, team, manager and hopefully certificates
   def show
-    @employee = Employee.find_by(id: @user.employee_id)
-    render json: {user: @employee.info, team: @employee.teams}
-
+    render json: @user
   end
 
   # POST /users
