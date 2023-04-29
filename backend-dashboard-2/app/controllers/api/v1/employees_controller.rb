@@ -11,7 +11,7 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees/1
   def show
-    render json: { user: @employee.info, teams: @employee.teams, certificates: @employee.certificates }
+    render json: { employee: @employee.info, teams: @employee.teams, certificates: @employee.certificates }
   end
 
   # POST /employees
