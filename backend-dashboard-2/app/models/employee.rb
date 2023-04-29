@@ -10,7 +10,7 @@ class Employee
   #store_in collection "employees"
   #field :_id, as: :employee_id, type: String, default: ->{BSON::ObjectId.new.to_s}
 
-  belongs_to :user
+  has_one :user
   has_many :employee_teams
   has_many :manager_teams, class_name: 'ManagerTeam', foreign_key: 'employee_id'
 

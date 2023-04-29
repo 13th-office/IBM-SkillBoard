@@ -5,5 +5,5 @@ class User
   field :id
   field :employee_id
   field :email, type: String
-  has_one :employee, class_name: "Employee", foreign_key: 'user_id', inverse_of: :user
+  belongs_to :employee, class_name: "Employee", foreign_key: '_id', inverse_of: :user
 end
