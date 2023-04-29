@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :manager_teams
       resources :employee_teams
       resources :teams
+      resources :certificate_categories
+      resources :categories
       # resources :auth
       post "login", to: "auth#login"
       post "logout", to: "auth#logout"
