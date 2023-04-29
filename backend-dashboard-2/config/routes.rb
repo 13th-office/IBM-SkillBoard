@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :teams
       resources :certificate_categories
       resources :categories
-      # resources :auth
+
       post "login", to: "auth#login"
       post "logout", to: "auth#logout"
 
