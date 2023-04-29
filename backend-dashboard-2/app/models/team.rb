@@ -15,6 +15,6 @@ class Team
   end
 
   def managers
-    manager_teams.map { |manager_team| manager_team.manager }
+    manager_teams.map { |manager_team| manager_team.manager.info }
   end
 end
