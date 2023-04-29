@@ -14,6 +14,8 @@ class Employee
   has_many :employee_teams
   has_many :manager_teams, class_name: 'ManagerTeam', foreign_key: 'employee_id'
 
+  has_many :certificate_employees, class_name: 'CertificateEmployee', foreign_key: 'employee_id'
+
   def info
     return({
       id: self.id,

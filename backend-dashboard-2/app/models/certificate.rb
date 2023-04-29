@@ -6,6 +6,8 @@ class Certificate
   field :type, type: String
   field :expiration_date, type: Date
 
+  has_many :certificate_employees, class_name: 'CertificateEmployee', foreign_key: 'certificate_id'
+
   validates :name,
   presence: true,
   length: { minimum: 3 }
