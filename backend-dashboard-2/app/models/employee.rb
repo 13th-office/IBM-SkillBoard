@@ -31,6 +31,10 @@ class Employee
     teams.map { |team| { team: team, managers: team.managers } }
   end
 
+  def certificates
+    certificates = Certificate.where(:_id.in => (certificate_employees.pluck(:certificate_id)))
+  end
+
   field :_id, type: String, default: ->{BSON::ObjectId.new.to_s}
   alias_attribute :employee_id, :id
   alias_method :to_param, :id
