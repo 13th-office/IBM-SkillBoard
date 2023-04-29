@@ -7,7 +7,7 @@ class Team
   has_many :employee_teams
   has_many :manager_teams
 
-  def manager
-    manager_teams.first&.manager
+  def managers
+    manager_teams.map { |manager_team| manager_team.manager }
   end
 end
