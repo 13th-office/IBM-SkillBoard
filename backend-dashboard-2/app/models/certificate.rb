@@ -19,4 +19,10 @@ class Certificate
     in: %w(ibm industry),
     message: "must be either ibm or industry"
   }
+
+  def categories
+    categories = Category.where(:_id.in => (certificate_categories.pluck(:certificate_id)))
+    # TODO: successfully fetch categories
+  end
+
 end
