@@ -7,6 +7,7 @@ class Certificate
   field :expiration_date, type: Date
 
   has_many :certificate_employees, class_name: 'CertificateEmployee', foreign_key: 'certificate_id'
+  has_many :certificate_categories, class_name: 'CertificateCategory', foreign_key: 'certificate_id'
 
   validates :name,
   presence: true,
