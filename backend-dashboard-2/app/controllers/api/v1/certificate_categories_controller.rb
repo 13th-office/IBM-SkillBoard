@@ -18,7 +18,7 @@ class Api::V1::CertificateCategoriesController < ApplicationController
     @certificate_category = CertificateCategory.new(certificate_category_params)
 
     if @certificate_category.save
-      render json: @certificate_category, status: :created, location: @certificate_category
+      render json: @certificate_category, status: :created, location: api_v1_certificate_category_url(@certificate_category)
     else
       render json: @certificate_category.errors, status: :unprocessable_entity
     end

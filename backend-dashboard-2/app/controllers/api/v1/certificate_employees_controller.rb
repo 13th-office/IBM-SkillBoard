@@ -18,7 +18,7 @@ class Api::V1::CertificateEmployeesController < ApplicationController
     @certificate_employee = CertificateEmployee.new(certificate_employee_params)
 
     if @certificate_employee.save
-      render json: @certificate_employee, status: :created, location: @certificate_employee
+      render json: @certificate_employee, status: :created, location: api_v1_certificate_employee_url(@certificate_employee)
     else
       render json: @certificate_employee.errors, status: :unprocessable_entity
     end
