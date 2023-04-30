@@ -1,0 +1,25 @@
+name: Get SSH Variables
+
+jobs:
+  set-vars:
+    name: Set Variables
+    runs-on: ubuntu-latest
+    outputs:
+      ip: ${{ steps.set-vars.outputs.ip }}
+      user: ${{ steps.set-vars.outputs.user }}
+      key: ${{ steps.set-vars.outputs.key }}
+    steps:
+      - name: Set Variables
+        run: |
+          if [[ "${{ inputs.branch }}" == "main" ]]
+          then
+            echo "ip=$(echo ${{ secrets.MAIN_SSH_IP }})" >> $GITHUB_OUTPUT
+            echo "user=$(echo ${{ secrets.MAIN_SSH_USER }})" >> $GITHUB_OUTPUT
+            echo "key=$(echo ${{ secrets.MAIN_SSH_PRIVATE_KEY }})" >> $GITHUB_OUTPUT
+          elif [[ "${{ inputs.branch }}" == "dev" ]]
+            echo "ip=$(echo ${{ secrets.DEV_SSH_IP }})" >> $GITHUB_OUTPUT
+            echo "user=$(echo ${{ secrets.DEV_SSH_USER }})" >> $GITHUB_OUTPUT
+            echo "key=$(echo ${{ secrets.DEV_SSH_PRIVATE_KEY }})" >> $GITHUB_OUTPUT
+          then
+          fi
+        id: set-vars
