@@ -89,12 +89,7 @@ jobs:
 
       - name: Retrieve server status
         run: |
-          if [[ -z "$(ssh my-vps 'ps a' | grep puma | grep -v grep)" ]]
-          then
-            echo "Server not running" >&2
-            exit -1
-          fi
-          exit 0
+          ssh my-vps 'tmux list-sessions' | grep -Eo "^client: "
 
       - name: Send Discord message on success
         if: ${{ success() }}
@@ -137,12 +132,7 @@ jobs:
 
       - name: Retrieve client status
         run: |
-          if [[ -z "$(ssh my-vps 'ps a' | grep http-server | grep -v grep)" ]]
-          then
-            echo "Client not running" >&2
-            exit -1
-          fi
-          exit 0
+          ssh my-vps 'tmux list-sessions' | grep -Eo "^client: "
 
       - name: Send Discord message on success
         if: ${{ success() }}
