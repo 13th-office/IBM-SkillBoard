@@ -1,5 +1,19 @@
 # IBM SkillBoard
 
+## Set up CI/CD
+
+The following GitHub repository secrets must be defined:
+- `DISCORD_WEBHOOK`: URL of Discord webhook to send notifications to
+- `PROJECT_ROOT`: path where repo is located (current implementation requires it be the same for `main` and `dev` VPSs, e.g. `/root/repos/IBM-SkillBoard`)
+- `MAIN_SSH_IP`: IP address of VPS for `main` branch deployment
+- `MAIN_SSH_USER`: user of VPS for `main` branch deployment
+- `MAIN_SSH_PRIVATE_KEY`: private key previously set up for passwordless SSH connection to VPS for `main` branch deployment
+- `DEV_SSH_IP`: IP address of VPS for `dev` branch deployment
+- `DEV_SSH_USER`: user of VPS for `dev` branch deployment
+- `DEV_SSH_PRIVATE_KEY`: private key previously set up for passwordless SSH connection to VPS for `dev` branch deployment
+
+For more info on setting up SSH keys see [this DigitalOcean resource](https://docs.digitalocean.com/products/droplets/how-to/add-ssh-keys/).
+
 ## Set up database
 
 Using your MongoDB manager or provider create a database for the IBM SkillBoard as well as an user with at least the `readWrite` role on the database. Create the collections listed in `/database/create_collections.js`.
