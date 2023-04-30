@@ -1,4 +1,10 @@
 name: Get SSH Variables
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        required: true
+        type: string
 
 jobs:
   set-vars:
