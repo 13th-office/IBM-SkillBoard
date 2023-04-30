@@ -27,7 +27,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Define variable set
+    - name: Create configuration file with main or dev SSH variables
       run: |
         if [[ "${{ inputs.branch }}" == "main" ]]
         then
@@ -40,9 +40,6 @@ runs:
           ssh_user="${{ inputs.dev_ssh_user }}"
           ssh_key="${{ inputs.dev_ssh_private_key }}"
         fi
-      shell: bash
-    - name: Create configuration file
-      run: |
         mkdir -p ~/.ssh/
         echo "${ssh_key}" > ~/.ssh/deploy-key.pem
         chmod 600 ~/.ssh/deploy-key.pem
