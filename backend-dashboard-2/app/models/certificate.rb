@@ -30,8 +30,7 @@ class Certificate
   end
 
   def categories
-    categories = Category.where(:_id.in => (certificate_categories.pluck(:certificate_id)))
-    # TODO: successfully fetch categories
+    categories = Category.where(:_id.in => (certificate_categories.pluck(:category_id)))
   end
 
 end
