@@ -115,7 +115,7 @@ jobs:
           activity: "Back end deployment"
 
   deploy-front-end:
-    name: Deploy back end to VPS
+    name: Deploy front end to VPS
     needs: [get-valid-branch, fetch-latest-commit]
     runs-on: ubuntu-latest
     steps:
