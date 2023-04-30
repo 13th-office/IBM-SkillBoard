@@ -18,7 +18,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Build status string
+    - name: Send message
       run: |
         if [[ "${{ inputs.status }}" == 0 ]]
         then
@@ -29,9 +29,6 @@ runs:
         else
           deployment_status="- status: unknown ❓"
         fi
-      shell: bash
-    - name: Send message
-      run: |
         curl -s -X POST "${{ inputs.webhook }}" \
           -d "content=${{ inputs.activity }} on branch \`${{ inputs.branch }}\` ${deployment_status}"
       shell: bash
