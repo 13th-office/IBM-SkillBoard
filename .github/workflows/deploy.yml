@@ -36,17 +36,9 @@ jobs:
     with:
       environment: ${{ needs.get-valid-branch.outputs.branch }}
 
-  get-ssh-vars:
-    name: Get SSH Variables
-    needs: [get-valid-branch, test]
-    uses: ./.github/workflows/get-ssh-vars.yml
-    secrets: inherit
-    with:
-      branch: ${{ needs.get-valid-branch.outputs.branch }}
-
   fetch-latest-commit:
-    name: Fetch latest dev commit from VPS
-    needs: [get-valid-branch, get-ssh-vars]
+    name: Fetch latest commit on VPS
+    needs: [get-valid-branch, test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -54,16 +46,20 @@ jobs:
       - name: Configure SSH connection
         uses: ./.github/actions/configure-ssh
         with:
-          ssh_user: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.user }}
-          ssh_ip: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.ip }}
-          ssh_private_key: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.key }}
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          main_ssh_ip: ${{ secrets.MAIN_SSH_IP }}
+          main_ssh_user: ${{ secrets.MAIN_SSH_USER }}
+          main_ssh_private_key: ${{ secrets.MAIN_SSH_PRIVATE_KEY }}
+          dev_ssh_ip: ${{ secrets.DEV_SSH_IP }}
+          dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
+          dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
       - name: Fetch latest commit
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset origin/${{ needs.get-valid-branch.outputs.branch }} --hard'
 
   deploy-back-end:
     name: Deploy back end to VPS
-    needs: get-ssh-vars
+    needs: [get-valid-branch, fetch-latest-commits]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -71,9 +67,13 @@ jobs:
       - name: Configure SSH connection
         uses: ./.github/actions/configure-ssh
         with:
-          ssh_user: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.user }}
-          ssh_ip: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.ip }}
-          ssh_private_key: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.key }}
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          main_ssh_ip: ${{ secrets.MAIN_SSH_IP }}
+          main_ssh_user: ${{ secrets.MAIN_SSH_USER }}
+          main_ssh_private_key: ${{ secrets.MAIN_SSH_PRIVATE_KEY }}
+          dev_ssh_ip: ${{ secrets.DEV_SSH_IP }}
+          dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
+          dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
       - name: Deploy server
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/backend-dashboard-2/ && ./redeploy.sh'
@@ -91,7 +91,7 @@ jobs:
 
   deploy-front-end:
     name: Deploy back end to VPS
-    needs: get-ssh-vars
+    needs: [get-valid-branch, fetch-latest-commits]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -99,9 +99,13 @@ jobs:
       - name: Configure SSH connection
         uses: ./.github/actions/configure-ssh
         with:
-          ssh_user: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.user }}
-          ssh_ip: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.ip }}
-          ssh_private_key: ${{ needs.get-ssh-vars.jobs.set-vars.outputs.key }}
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          main_ssh_ip: ${{ secrets.MAIN_SSH_IP }}
+          main_ssh_user: ${{ secrets.MAIN_SSH_USER }}
+          main_ssh_private_key: ${{ secrets.MAIN_SSH_PRIVATE_KEY }}
+          dev_ssh_ip: ${{ secrets.DEV_SSH_IP }}
+          dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
+          dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
       - name: Deploy client
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/client/ && ./redeploy.sh'
