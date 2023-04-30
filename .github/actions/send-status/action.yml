@@ -1,5 +1,5 @@
-name: Send Deploy Status
-description: Send deployment status via Discord webhook
+name: Send Status
+description: Send activity status via Discord webhook
 
 inputs:
   webhook:
@@ -11,8 +11,9 @@ inputs:
   status:
     description: Status of deployed service (0 for success, 1 for failure)
     required: true
-  service:
-    description: Name of deployed service (e.g. back end, front end)
+  activity:
+    description: Name of activity (sentence case, e.g. Back end deployment, React tests)
+    required: true
 
 runs:
   using: composite
@@ -21,15 +22,15 @@ runs:
       run: |
         if [[ "${{ input.status }}" == 0 ]]
         then
-          deployment_status="success 🚀"
+          deployment_status="- status: success ✅"
         elif [[ "${{ input.status }}" == 1 ]]
-          deployment_status="failure 🚨"
+          deployment_status="- status: failure 🚨"
         else
-          deployment_status="status unknown ❓"
+          deployment_status="- status: unknown ❓"
         fi
       shell: bash
     - name: Send message
       run: |
         curl -s -X POST "${{ input.webhook }}" \
-          -d "content=Deployment of ${{ inputs.service }} on branch \`${{ inputs.branch }}\` ${deployment_status}"
+          -d "content=${{ inputs.activity }} on branch \`${{ inputs.branch }}\` ${deployment_status}"
       shell: bash

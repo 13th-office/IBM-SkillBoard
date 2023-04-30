@@ -83,21 +83,21 @@ jobs:
 
       - name: Send Discord message on success
         if: ${{ success() }}
-        uses: ./.github/actions/send-deploy-status
+        uses: ./.github/actions/send-status
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           branch: ${{ needs.get-valid-branch.outputs.branch }}
           status: 0
-          service: "back end"
+          activity: "Back end deployment"
 
       - name: Send Discord message on failure
         if: ${{ failure() }}
-        uses: ./.github/actions/send-deploy-status
+        uses: ./.github/actions/send-status
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           branch: ${{ needs.get-valid-branch.outputs.branch }}
           status: 1
-          service: "back end"
+          activity: "Back end deployment"
 
   deploy-front-end:
     name: Deploy back end to VPS
@@ -125,18 +125,18 @@ jobs:
 
       - name: Send Discord message on success
         if: ${{ success() }}
-        uses: ./.github/actions/send-deploy-status
+        uses: ./.github/actions/send-status
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           branch: ${{ needs.get-valid-branch.outputs.branch }}
           status: 0
-          service: "front end"
+          activity: "Front end deployment"
 
       - name: Send Discord message on failure
         if: ${{ failure() }}
-        uses: ./.github/actions/send-deploy-status
+        uses: ./.github/actions/send-status
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           branch: ${{ needs.get-valid-branch.outputs.branch }}
           status: 1
-          service: "front end"
+          activity: "Front end deployment"
