@@ -31,6 +31,7 @@ class Certificate
 
   def categories
     categories = Category.where(:_id.in => (certificate_categories.pluck(:category_id)))
+    categories.map { |category| category.info }
   end
 
 end
