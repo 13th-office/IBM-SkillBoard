@@ -30,5 +30,5 @@ runs:
           deployment_status="- status: unknown ❓"
         fi
         curl -s -X POST "${{ inputs.webhook }}" \
-          -d "content=${{ inputs.activity }} on branch \`${{ inputs.branch }}\` ${deployment_status}"
+          -d "content=${{ inputs.activity }} on \`${{ inputs.branch }}\` branch ${deployment_status}"
       shell: bash
