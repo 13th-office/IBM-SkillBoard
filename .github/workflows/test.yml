@@ -25,7 +25,12 @@ jobs:
 
       - name: Send Discord message on failure
         if: ${{ failure() && ( inputs.environment == 'dev' || inputs.environment == 'main' ) }}
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ React tests for \`${{ inputs.environment }}\` deployment failed"
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ inputs.environment }}
+          status: 1
+          activity: "React tests"
 
   test-server:
     runs-on: ubuntu-latest
@@ -41,4 +46,9 @@ jobs:
 
       - name: Send Discord message on failure
         if: ${{ failure() && ( inputs.environment == 'dev' || inputs.environment == 'main' ) }}
-        run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=⚠️ Rails tests for \`${{ inputs.environment }}\` deployment failed"
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ inputs.environment }}
+          status: 1
+          activity: "Rails tests"
