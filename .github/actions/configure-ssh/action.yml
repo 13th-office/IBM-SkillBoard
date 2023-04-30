@@ -5,15 +5,6 @@ inputs:
   branch:
     description: Branch to SSH to (main/dev)
     required: true
-  dev_ssh_user:
-    description: User to use on SSH login (dev)
-    required: true
-  dev_ssh_ip:
-    description: IP address to SSH to (dev)
-    required: true
-  dev_ssh_private_key:
-    description: Private key to use on SSH connection (dev)
-    required: true
   main_ssh_user:
     description: User to use on SSH login (main)
     required: true
@@ -22,6 +13,15 @@ inputs:
     required: true
   main_ssh_private_key:
     description: Private key to use on SSH connection (main)
+    required: true
+  dev_ssh_user:
+    description: User to use on SSH login (dev)
+    required: true
+  dev_ssh_ip:
+    description: IP address to SSH to (dev)
+    required: true
+  dev_ssh_private_key:
+    description: Private key to use on SSH connection (dev)
     required: true
 
 runs:
