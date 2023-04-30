@@ -24,6 +24,7 @@ runs:
         then
           deployment_status="- status: success ✅"
         elif [[ "${{ inputs.status }}" == 1 ]]
+        then
           deployment_status="- status: failure 🚨"
         else
           deployment_status="- status: unknown ❓"
