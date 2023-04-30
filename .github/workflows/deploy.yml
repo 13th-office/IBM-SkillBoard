@@ -88,7 +88,13 @@ jobs:
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/backend-dashboard-2/ && ./redeploy.sh'
 
       - name: Retrieve server status
-        run: ssh my-vps 'ps a | grep puma | grep -v grep'
+        run: |
+          if [[ -z "$(ssh my-vps 'ps a' | grep puma | grep -v grep)" ]]
+          then
+            echo "Server not running" >&2
+            exit -1
+          fi
+          exit 0
 
       - name: Send Discord message on success
         if: ${{ success() }}
@@ -130,7 +136,13 @@ jobs:
         run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/client/ && ./redeploy.sh'
 
       - name: Retrieve client status
-        run: ssh my-vps 'ps a | grep http-server | grep -v grep'
+        run: |
+          if [[ -z "$(ssh my-vps 'ps a' | grep http-server | grep -v grep)" ]]
+          then
+            echo "Client not running" >&2
+            exit -1
+          fi
+          exit 0
 
       - name: Send Discord message on success
         if: ${{ success() }}
