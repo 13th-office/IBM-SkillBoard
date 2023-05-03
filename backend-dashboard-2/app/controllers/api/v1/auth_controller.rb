@@ -6,7 +6,7 @@ class Api::V1::AuthController < ApplicationController
     password = params[:password]
 
     uri = URI("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword")
-        
+
     res = Net::HTTP.post_form(
       uri,
       'key' => ENV['FIREBASE_KEY'],
@@ -23,9 +23,14 @@ class Api::V1::AuthController < ApplicationController
         user = User.find_by(id: session[:user_id])
         unless user.present?
           user = User.new(id: session[:user_id], email: email, employee_id: employee.id)
-          user.save
+          if user.save
+            render status: :created, json: user
+          else
+            render status: :unprocessable_entity, json: user.errors
+          end
+        else
+          render status: :ok, json: { idToken: data['idToken'] }
         end
-        render status: :ok, json: {idToken: data['idToken']}
       else
         render status: :unprocessable_entity, json: { error: "Employee not found" }
       end
@@ -39,5 +44,4 @@ class Api::V1::AuthController < ApplicationController
     session.clear
     head :ok
   end
-  
 end
