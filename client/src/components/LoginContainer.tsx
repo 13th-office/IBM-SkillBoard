@@ -25,7 +25,7 @@ const LoginContainer = () => {
     onError: (error: any) => {
       setMessage(error.response.data.error);
     },
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data) => {
       localStorage.setItem(SESSION_KEY, data.data.idToken);
       setUser(data.data.idToken);
       navigate("/");
