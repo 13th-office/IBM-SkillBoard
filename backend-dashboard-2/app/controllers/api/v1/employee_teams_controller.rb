@@ -1,4 +1,5 @@
 class Api::V1::EmployeeTeamsController < ApplicationController
+  include Authentication
   before_action :set_employee_team, only: %i[ show update destroy ]
 
   # GET /employee_teams
