@@ -6,8 +6,8 @@ const EmployeesTable = () => {
     <div className="employeestable-container">
       <div className="flex flex-row employeestable-header">
         <p className="w-[25%]">Nombre</p>
-        <p className="w-[25%]">Task</p>
-        <p className="w-[25%]">Category</p>
+        <p className="w-[25%]">Email</p>
+        <p className="w-[25%]">Role</p>
         <p className="w-[25%]"></p>
       </div>
       <div className="employeestable-content">
