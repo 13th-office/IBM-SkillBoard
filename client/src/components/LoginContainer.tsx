@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Login from "./Login/Login";
 import { Credentials } from "../../lib/types";
+import { SESSION_KEY } from "../../lib/constants";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext } from "react";
@@ -23,6 +24,11 @@ const LoginContainer = () => {
     },
     onError: (error: any) => {
       setMessage(error.response.data.error);
+    },
+    onSuccess: (data, variables, context) => {
+      localStorage.setItem(SESSION_KEY, data.data.idToken);
+      setUser(data.data.idToken);
+      navigate("/");
     },
   });
 
