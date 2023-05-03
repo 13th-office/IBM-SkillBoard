@@ -1,4 +1,5 @@
 class Api::V1::CertificateEmployeesController < ApplicationController
+  include Authentication
   before_action :set_certificate_employee, only: %i[ show update destroy ]
 
   # GET /certificate_employees
