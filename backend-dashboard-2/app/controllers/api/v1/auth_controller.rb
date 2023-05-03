@@ -25,11 +25,10 @@ class Api::V1::AuthController < ApplicationController
           user = User.new(id: session[:user_id], email: email, employee_id: employee.id)
           user.save
         end
-
+        render status: :ok, json: {idToken: data['idToken']}
       else
         render status: :unprocessable_entity, json: { error: "Employee not found" }
       end
-      render status: :ok, json: {idToken: data['idToken']}
     else
       render status: :unauthorized, json: { error: "Bad login credentials" }
     end
