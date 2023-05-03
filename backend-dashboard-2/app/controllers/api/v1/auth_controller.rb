@@ -17,10 +17,10 @@ class Api::V1::AuthController < ApplicationController
     data = JSON.parse(res.body)
 
     if res.is_a?(Net::HTTPSuccess)
-      session[:user_id] = data['localId']
-      user = User.find_by(id: session[:user_id])
       employee = Employee.find_by(email: email)
       if employee.present?
+        session[:user_id] = data['localId']
+        user = User.find_by(id: session[:user_id])
         unless user.present?
           user = User.new(id: session[:user_id], email: email, employee_id: employee.id)
           user.save
