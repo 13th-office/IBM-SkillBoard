@@ -3,9 +3,14 @@ import { useState } from "react";
 import Select from "react-select";
 import { BsSearch } from "react-icons/bs";
 import EmployeesTable from "../EmployeesTable/EmployeesTable";
+import { User } from "../../../lib/types";
 import "./Employees.css";
 
-const Employees = () => {
+interface Props {
+  employees: User[];
+}
+
+const Employees = ({ employees }: Props) => {
   const [values, setValues] = useState("Category");
   const [searchTerm, setSearchTerm] = React.useState("");
 
@@ -29,9 +34,10 @@ const Employees = () => {
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-[90vh]">
       <div className="flex flex-row employees-filter">
         <input
+          type="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onSubmit={() => console.log(searchTerm)}
@@ -60,7 +66,7 @@ const Employees = () => {
           }}
         />
       </div>
-      <EmployeesTable />
+      <EmployeesTable employees={employees} />
     </div>
   );
 };

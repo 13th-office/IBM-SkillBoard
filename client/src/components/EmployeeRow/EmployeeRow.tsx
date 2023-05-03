@@ -1,12 +1,17 @@
 import React from "react";
+import { User } from "../../../lib/types";
 import "./EmployeeRow.css";
 
-const EmployeeRow = () => {
+interface Props {
+  employee: User;
+}
+
+const EmployeeRow = ({ employee }: Props) => {
   return (
     <div className="EmployeeRow-container flex drop-shadow-md">
-      <p>John Doe</p>
-      <p>johndoe@ibm.mx</p>
-      <p>Front-end Developer</p>
+      <p>{employee.name + " " + employee.last_name}</p>
+      <p>{employee.email}</p>
+      <p>{employee.role}</p>
       <div className="employee-row-button">
         <div className="employee-row-profile-button">
           <p className="cursor-pointer">View Profile</p>
