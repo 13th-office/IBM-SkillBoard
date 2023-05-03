@@ -1,4 +1,5 @@
 class Api::V1::ManagerTeamsController < ApplicationController
+  include Authentication
   before_action :set_manager_team, only: %i[ show update destroy ]
 
   # GET /manager_teams
