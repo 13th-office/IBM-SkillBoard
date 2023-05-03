@@ -1,4 +1,5 @@
 class Api::V1::CertificateCategoriesController < ApplicationController
+  include Authentication
   before_action :set_certificate_category, only: %i[ show update destroy ]
 
   # GET /certificate_categories
