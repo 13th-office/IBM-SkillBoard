@@ -14,7 +14,12 @@ class Team
     }
   end
 
+
   def managers
     manager_teams.map { |manager_team| manager_team.manager.info }
+  end
+
+  def employees
+    employee_teams.map { |employee_team| employee_team.employee.info }
   end
 end

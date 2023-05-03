@@ -11,7 +11,7 @@ class Employee
   #field :_id, as: :employee_id, type: String, default: ->{BSON::ObjectId.new.to_s}
 
   has_one :user
-  has_many :employee_teams
+  has_many :employee_teams, class_name: 'EmployeeTeam', foreign_key: 'employee_id'
   has_many :manager_teams, class_name: 'ManagerTeam', foreign_key: 'employee_id'
 
   has_many :certificate_employees, class_name: 'CertificateEmployee', foreign_key: 'employee_id'

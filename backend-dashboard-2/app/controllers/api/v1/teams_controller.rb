@@ -3,15 +3,15 @@ class Api::V1::TeamsController < ApplicationController
   before_action :set_team, only: %i[ show update destroy ]
 
   # GET /teams
-  def index
-    @teams = Team.all
+    def index
+      @teams = Team.all
+      render json: {teams: @teams.map { |team| { team: team.info, employees: team.employees, manager: team.managers } }}
 
-    render json: @teams
   end
 
   # GET /teams/1
   def show
-    render json: @team.manager
+    render json: @team
   end
 
   # POST /teams
