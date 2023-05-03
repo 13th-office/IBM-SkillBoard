@@ -16,26 +16,29 @@ class Api::V1::AuthController < ApplicationController
 
     data = JSON.parse(res.body)
 
-    if res.is_a?(Net::HTTPSuccess)
-      employee = Employee.find_by(email: email)
-      if employee.present?
-        session[:user_id] = data['localId']
-        user = User.find_by(id: session[:user_id])
-        unless user.present?
-          user = User.new(id: session[:user_id], email: email, employee_id: employee.id)
-          if user.save
-            render status: :created, json: user
-          else
-            render status: :unprocessable_entity, json: user.errors
-          end
-        else
-          render status: :ok, json: { idToken: data['idToken'] }
-        end
-      else
-        render status: :unprocessable_entity, json: { error: "Employee not found" }
-      end
-    else
+    unless res.is_a?(Net::HTTPSuccess)
       render status: :unauthorized, json: { error: "Bad login credentials" }
+      return
+    end
+
+    employee = Employee.find_by(email: email)
+    unless employee.present?
+      render status: :unauthorized, json: { error: "Employee not found" }
+      return
+    end
+
+    session[:user_id] = data['localId']
+    user = User.find_by(id: session[:user_id])
+    if user.present?
+      render status: :ok, json: { idToken: data['idToken'], newUser: 0 }
+      return
+    end
+
+    user = User.new(id: session[:user_id], email: email, employee_id: employee.id)
+    if user.save
+      render status: :ok, json: { idToken: data['idToken'], newUser: 1 }
+    else
+      render status: :unprocessable_entity, json: user.errors
     end
   end
 
