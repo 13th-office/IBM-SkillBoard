@@ -5,7 +5,7 @@ class Api::V1::TeamsController < ApplicationController
   # GET /teams
     def index
       @teams = Team.all
-      render json: {teams: @teams.map { |team| { team: team.info, employees: team.employees, manager: team.managers } }}
+      render json: {teams: @teams.map { |team| { team: team.info, employees: team.employees, managers: team.managers } }}
 
   end
 
