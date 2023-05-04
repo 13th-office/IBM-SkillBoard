@@ -102,24 +102,20 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
 - [Users](#users)
   - `GET /api/v1/users`: Fetch all users
   - `GET /api/v1/users/:id`: Fetch user info
-  - `POST /api/v1/users`: Create user
-  - `PUT /api/v1/users/:id`: Update user
-  - `DELETE /api/v1/users/:id`: Delete user
 - [Certificates](#certificates)
   - `GET /api/v1/certificates`: Fetch all certificates
   - `GET /api/v1/certificates/:id`: Fetch certificate info
-  - `POST /api/v1/certificates`: Create certificate
-  - `PUT /api/v1/certificates/:id`: Update certificate
-  - `DELETE /api/v1/certificates/:id`: Delete certificate
+- [Categories](#categories)
+  - `GET /api/v1/categories`: Fetch all registered categories
+  - `GET /api/v1/categories/:id`: Fetch category 
 - [Employees](#employees)
   - `GET /api/v1/employees`: Fetch all employees
   - `GET /api/v1/employees/:id`: Fetch an employee's data
-  - `POST /api/v1/employees`: Create a new employee
-  - `PUT /api/v1/employees/:id`: Modify employee
-  - `DELETE /api/v1/employees/:id`: Delete employee
 - [Teams](#teams)
   - `GET /api/v1/teams`: Fetch all teams and employees related to that team
   - `GET /api/v1/teams/:id`: Fetch an specific team's data
+
+All routes related to the following models contain a method for `POST, PUT and DELETE`
 
 Note: if an endpoint is not listed here, a complete list can be retrieved by running `bin/rails routes`.
 
@@ -182,51 +178,6 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
             }
         ```
 
-- `POST /api/v1/users`: Create user
-    - Request
-        ```json
-        JSON body:
-            {
-                "name": "Julia Montemayor",
-                "email": "july@ibm.com"
-            }
-        ```
-    - Reponse
-        ```json
-        JSON body:
-            {
-                "_id": { "$oid": "643ea1efd2f1c13ab257a43c" },
-                "name": "Julia Montemayor",
-                "email": "july@ibm.com",
-                "created_at": "2023-04-18T13:58:07.377Z",
-                "updated_at": "2023-04-18T13:58:07.377Z"
-            }
-        ```
-- `PUT /api/v1/users/:id`: Update user
-    - Request
-        ```json
-        JSON body:
-            {
-                "name": "Julia Montemenor"
-            }
-        ```
-    - Response
-        ```json
-        JSON body:
-            {
-                "_id": { "$oid": "643ea1efd2f1c13ab257a43c" },
-                "name": "Julia Montemenor",
-                "email": "july@ibm.com",
-                "created_at": "2023-04-18T13:58:07.377Z",
-                "updated_at": "2023-04-18T14:03:28.958Z"
-            }
-        ```
-- `DELETE /api/v1/users/:id`: Delete user
-    - Response
-        ```json
-        Status: 204 No Content
-        ```
-
 ### Certificates
   **All Users requests require authentication.**
 
@@ -261,66 +212,41 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
                 "updated_at": "2023-04-18T20:31:24.184Z"
             }
         ```
-
-- `POST /api/v1/certificates`: Create certificate
-    - Request
-        ```json
-        JSON body:
-            {
-                "name": "Watson Specialist v1",
-                "type": "ibm",
-                "expiration_date": "2024-4-1"
-            }
-
-        On failure:
-            Status: 422 Unprocessable Entity
-            JSON body:
-                {
-                    "name": [
-                        "is too short (minimum is 3 characters)"
-                    ],
-                    "type": [
-                        "can't be blank",
-                        "must be either ibm or industry"
-                    ]
-                }
-        ```
-    - Reponse
-        ```json
-        JSON body:
-            {
-                "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
-                "name": "Watson Specialist v1",
-                "type": "ibm",
-                "expiration_date": "2024-04-01",
-                "created_at": "2023-04-18T13:58:07.377Z",
-                "updated_at": "2023-04-18T13:58:07.377Z"
-            }
-        ```
-- `PUT /api/v1/certificates/:id`: Update certificate
-    - Request
-        ```json
-        JSON body:
-            {
-                "expiration_date": "2024-4-3'"
-            }
-        ```
+### Categories
+- `GET /api/v1/categories`: Fetch categories
     - Response
         ```json
         JSON body:
+                [
             {
-                "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
-                "name": "Watson Specialist v1",
-                "type": "ibm",
-                "expiration_date": "2024-04-30",
-                "created_at": "2023-04-18T13:58:07.377Z",
-                "updated_at": "2023-04-18T20:50:18.635Z"
+                "_id": {
+                    "$oid": "644c95d4d2f1c175be910954"
+                },
+                "created_at": "2023-04-29T03:58:11.498Z",
+                "name": "AI",
+                "updated_at": "2023-04-29T03:58:11.498Z"
+            },
+            {
+                "_id": {
+                    "$oid": "644c9842d2f1c175be910956"
+                },
+                "created_at": "2023-04-29T04:08:34.726Z",
+                "name": "Networking",
+                "updated_at": "2023-04-29T04:08:34.726Z"
             }
+        ]
         ```
-- `DELETE /api/v1/certificates/:id`: Delete certificate
+- `GET /api/v1/categories/:id`: Fetch a single category
     - Response
         ```json
-        Status: 204 No Content
+            {
+                "_id": {
+                    "$oid": "644c9842d2f1c175be910956"
+                },
+                "created_at": "2023-04-29T04:08:34.726Z",
+                "name": "Networking",
+                "updated_at": "2023-04-29T04:08:34.726Z"
+            }
         ```
 ### Employees
   **All Users requests require authentication.**
@@ -328,28 +254,28 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
     - Response
         ```JSON
         JSON body:
-            [
-        {
-            "_id": "cristijnm17gas",
-            "created_at": "2023-04-27T20:32:14.886Z",
-            "email": "cristi@ibm.com",
-            "id": "cristijnm17gas",
-            "last_name": "Aguilera",
-            "name": "Cristina",
-            "role": "Software Intern",
-            "updated_at": "2023-04-27T20:32:14.886Z"
-        },
-        {
-            "_id": "cameki0-8",
-            "created_at": "2023-04-28T20:07:50.647Z",
-            "email": "camello@ibm.com",
-            "last_name": "Petrolero",
-            "name": "Camello",
-            "role": "Camello Manager",
-            "updated_at": "2023-04-28T20:07:50.647Z"
-        },
-        ...
-        ]
+                [
+            {
+                "_id": "cristijnm17gas",
+                "created_at": "2023-04-27T20:32:14.886Z",
+                "email": "cristi@ibm.com",
+                "id": "cristijnm17gas",
+                "last_name": "Aguilera",
+                "name": "Cristina",
+                "role": "Software Intern",
+                "updated_at": "2023-04-27T20:32:14.886Z"
+            },
+            {
+                "_id": "cameki0-8",
+                "created_at": "2023-04-28T20:07:50.647Z",
+                "email": "camello@ibm.com",
+                "last_name": "Petrolero",
+                "name": "Camello",
+                "role": "Camello Manager",
+                "updated_at": "2023-04-28T20:07:50.647Z"
+            },
+            ...
+            ]
         ```
 - `GET /api/v1/employees/:id`: Fetch an employee's data
   - Response
@@ -398,58 +324,6 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         ]
     }
     ```
-- `POST /api/v1/employees`: Create a new employee
-    - Request
-        ```json
-        JSON body:
-            {
-                "name": "Gloria",
-                "last_name": "Trevi",
-                "role": "Software Tester",
-                "id": "glo6jn0",
-                "email": "glo6@ibm.com"
-            }
-        ```
-    - Response
-        ```json
-        JSON body:
-            {
-                "_id": "glo6jn0",
-                "created_at": "2023-05-04T04:22:31.529Z",
-                "email": "glo6@ibm.com",
-                "last_name": "Trevi",
-                "name": "Gloria",
-                "role": "Software Tester",
-                "updated_at": "2023-05-04T04:22:31.529Z"
-            }
-        ```
-- `PUT /api/v1/employees/:id`: Modify employee
-    - Request
-        ```JSON
-        JSON body:
-            {
-                "role": "Software Tester Queen"
-            }  
-        ```
-    - Response
-        ```JSON
-        JSON body:
-            {
-                "_id": "glo6jn0",
-                "created_at": "2023-05-04T04:22:31.529Z",
-                "email": "glo6@ibm.com",
-                "last_name": "Trevi",
-                "name": "Gloria",
-                "role": "Software Tester Queen",
-                "updated_at": "2023-05-04T04:33:26.969Z"
-            }
-        ```
-- `DELETE /api/v1/employees/:id`: Delete employee
-    - Response
-        ```json
-            Status: 204 No Content
-        ```
-
 ### Teams
   **All Users requests require authentication.**
 
