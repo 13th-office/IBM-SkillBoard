@@ -11,7 +11,7 @@ class Api::V1::TeamsController < ApplicationController
 
   # GET /teams/1
   def show
-    render json: @team
+    render json: { team: @team.info, employees: @team.employees, managers: @team.managers }
   end
 
   # POST /teams

@@ -94,10 +94,36 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
     ```
 
 ## Endpoint documentation
+### Table of contents
+
+- [Authentication](#authentication)
+  - `POST /api/v1/login`: Log in
+  - `POST /api/v1/logout`: Log out
+- [Users](#users)
+  - `GET /api/v1/users`: Fetch all users
+  - `GET /api/v1/users/:id`: Fetch user info
+  - `POST /api/v1/users`: Create user
+  - `PUT /api/v1/users/:id`: Update user
+  - `DELETE /api/v1/users/:id`: Delete user
+- [Certificates](#certificates)
+  - `GET /api/v1/certificates`: Fetch all certificates
+  - `GET /api/v1/certificates/:id`: Fetch certificate info
+  - `POST /api/v1/certificates`: Create certificate
+  - `PUT /api/v1/certificates/:id`: Update certificate
+  - `DELETE /api/v1/certificates/:id`: Delete certificate
+- [Employees](#employees)
+  - `GET /api/v1/employees`: Fetch all employees
+  - `GET /api/v1/employees/:id`: Fetch an employee's data
+  - `POST /api/v1/employees`: Create a new employee
+  - `PUT /api/v1/employees/:id`: Modify employee
+  - `DELETE /api/v1/employees/:id`: Delete employee
+- [Teams](#teams)
+  - `GET /api/v1/teams`: Fetch all teams and employees related to that team
+  - `GET /api/v1/teams/:id`: Fetch an specific team's data
 
 Note: if an endpoint is not listed here, a complete list can be retrieved by running `bin/rails routes`.
 
-### Authentication
+### Authentication 
 
 - Endpoints requiring authentication read `_session_id` header, which is sent automatically by the browser once the user is logged in. Otherwise, `Status: 401 Unauthorized` and `{ "error" : "Authentication required" }` are returned.
 
@@ -122,8 +148,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
 - `POST /api/v1/logout`: Log out
 
 ### Users
+  **All Users requests require authentication.**
 
-- All Users requests require authentication.
 
 - `GET /api/v1/users`: Fetch all users
     - Response
@@ -202,8 +228,8 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         ```
 
 ### Certificates
+  **All Users requests require authentication.**
 
-- All Users requests require authentication.
 
 - `GET /api/v1/certificates`: Fetch all certificates
     - Response
@@ -296,5 +322,222 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         ```json
         Status: 204 No Content
         ```
+### Employees
+  **All Users requests require authentication.**
+  - `GET /api/v1/employees`: Fetch all employees
+    - Response
+        ```JSON
+        JSON body:
+            [
+        {
+            "_id": "cristijnm17gas",
+            "created_at": "2023-04-27T20:32:14.886Z",
+            "email": "cristi@ibm.com",
+            "id": "cristijnm17gas",
+            "last_name": "Aguilera",
+            "name": "Cristina",
+            "role": "Software Intern",
+            "updated_at": "2023-04-27T20:32:14.886Z"
+        },
+        {
+            "_id": "cameki0-8",
+            "created_at": "2023-04-28T20:07:50.647Z",
+            "email": "camello@ibm.com",
+            "last_name": "Petrolero",
+            "name": "Camello",
+            "role": "Camello Manager",
+            "updated_at": "2023-04-28T20:07:50.647Z"
+        },
+        ...
+        ]
+        ```
+- `GET /api/v1/employees/:id`: Fetch an employee's data
+  - Response
+    ```JSON
+        Json body:
+            {
+        "employee": {
+            "id": "cr7id",
+            "name": "Cristiano",
+            "last_name": "Ronaldo",
+            "email": "cr7@ibm.com",
+            "role": "Senior Manager"
+        },
+        "teams": [
+            {
+                "team": {
+                    "id": "644c25aee64d1e6d26836799",
+                    "name": "Back-end Management"
+                },
+                "managers": [
+                    {
+                        "id": "cameki0-8",
+                        "name": "Camello",
+                        "last_name": "Petrolero",
+                        "email": "camello@ibm.com",
+                        "role": "Camello Manager"
+                    }
+                ]
+            }
+        ],
+        "certificates": [
+            {
+                "certificate": {
+                    "id": "643f424fed787a568fdc64d2",
+                    "name": "Watson Specialist v1",
+                    "type": "ibm",
+                    "expiration_date": "2025-07-05"
+                },
+                "categories": [
+                    {
+                        "id": "644c95d4d2f1c175be910954",
+                        "name": "AI"
+                    }
+                ]
+            }
+        ]
+    }
+    ```
+- `POST /api/v1/employees`: Create a new employee
+    - Request
+        ```json
+        JSON body:
+            {
+                "name": "Gloria",
+                "last_name": "Trevi",
+                "role": "Software Tester",
+                "id": "glo6jn0",
+                "email": "glo6@ibm.com"
+            }
+        ```
+    - Response
+        ```json
+        JSON body:
+            {
+                "_id": "glo6jn0",
+                "created_at": "2023-05-04T04:22:31.529Z",
+                "email": "glo6@ibm.com",
+                "last_name": "Trevi",
+                "name": "Gloria",
+                "role": "Software Tester",
+                "updated_at": "2023-05-04T04:22:31.529Z"
+            }
+        ```
+- `PUT /api/v1/employees/:id`: Modify employee
+    - Request
+        ```JSON
+        JSON body:
+            {
+                "role": "Software Tester Queen"
+            }  
+        ```
+    - Response
+        ```JSON
+        JSON body:
+            {
+                "_id": "glo6jn0",
+                "created_at": "2023-05-04T04:22:31.529Z",
+                "email": "glo6@ibm.com",
+                "last_name": "Trevi",
+                "name": "Gloria",
+                "role": "Software Tester Queen",
+                "updated_at": "2023-05-04T04:33:26.969Z"
+            }
+        ```
+- `DELETE /api/v1/employees/:id`: Delete employee
+    - Response
+        ```json
+            Status: 204 No Content
+        ```
+
+### Teams
+  **All Users requests require authentication.**
+
+- `GET /api/v1/teams`: Fetch all teams and their respective employees and managers
+  - Response
+    ```json
+    JSON body:
+        {
+        "teams": [
+            {
+                "team": {
+                    "id": "644c25aee64d1e6d26836799",
+                    "name": "Back-end Management"
+                },
+                "employees": [
+                    {
+                        "id": "alyxita",
+                        "name": "Alyx",
+                        "last_name": "Miranda",
+                        "email": "alyx@ibm.com",
+                        "role": "TopGamer"
+                    },
+                    {
+                        "id": "cr7id",
+                        "name": "Cristiano",
+                        "last_name": "Ronaldo",
+                        "email": "cr7@ibm.com",
+                        "role": "Senior Manager"
+                    }
+                ],
+                "managers": [
+                    {
+                        "id": "cameki0-8",
+                        "name": "Camello",
+                        "last_name": "Petrolero",
+                        "email": "camello@ibm.com",
+                        "role": "Camello Manager"
+                    }
+                ]
+            },
+            {
+                "team": {
+                    "id": "644c25dbe64d1e6d2683679a",
+                    "name": "IBM Testing"
+                },
+                "employees": [],
+                "managers": []
+            },
+        ...
+        ]
+    }
+    ```
+- `GET /api/v1/teams/:id`: Get a team's information
+  - Response
+    ```json
+    JSON body:
+        {
+        "team": {
+            "id": "644c25aee64d1e6d26836799",
+            "name": "Back-end Management"
+        },
+        "employees": [
+            {
+                "id": "alyxita",
+                "name": "Alyx",
+                "last_name": "Miranda",
+                "email": "alyx@ibm.com",
+                "role": "TopGamer"
+            },
+            {
+                "id": "cr7id",
+                "name": "Cristiano",
+                "last_name": "Ronaldo",
+                "email": "cr7@ibm.com",
+                "role": "Senior Manager"
+            }
+        ],
+        "managers": [
+            {
+                "id": "cameki0-8",
+                "name": "Camello",
+                "last_name": "Petrolero",
+                "email": "camello@ibm.com",
+                "role": "Camello Manager"
+            }
+        ]
+    }
+    ```
+*These are the important endpoints for GET methods related to the team endpoint*
 
 ✨ Documentation is my passion ✨
