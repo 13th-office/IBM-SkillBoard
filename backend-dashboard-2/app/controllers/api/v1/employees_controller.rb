@@ -39,6 +39,12 @@ class Api::V1::EmployeesController < ApplicationController
     @employee.destroy
   end
 
+  def viewer
+    @employee = Employee.find_by(id: session[:user_id])
+    render json: { employee: @employee.info }
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee

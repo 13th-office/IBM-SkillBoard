@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
       post "login", to: "auth#login"
       post "logout", to: "auth#logout"
+      get "viewer", to: "employees#viewer"
 
       end
   end
