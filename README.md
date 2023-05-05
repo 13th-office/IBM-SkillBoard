@@ -202,12 +202,19 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         JSON body:
             [
                 {
-                    "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
-                    "name": "Watson Specialist v1",
-                    "type": "ibm",
-                    "expiration_date": "2024-04-01",
-                    "created_at": "2023-04-18T20:31:24.184Z",
-                    "updated_at": "2023-04-18T20:31:24.184Z"
+                    "certificate": {
+                        "id": "643efe1cd2f1c148b579fd74"
+                        "name": "Watson Specialist v1",
+                        "type": "ibm",
+                        "expiration_date": "2025-07-05"
+                    },
+                    "categories": [
+                        {
+                            "id": "644c95d4d2f1c175be910954",
+                            "name": "AI"
+                        },
+                        ...
+                    ]
                 },
                 ...
             ]
@@ -217,12 +224,19 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         ```json
         JSON body:
             {
-                "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
-                "name": "Watson Specialist v1",
-                "type": "ibm",
-                "expiration_date": "2024-04-01",
-                "created_at": "2023-04-18T20:31:24.184Z",
-                "updated_at": "2023-04-18T20:31:24.184Z"
+                "certificate": {
+                    "id": "643efe1cd2f1c148b579fd74"
+                    "name": "Watson Specialist v1",
+                    "type": "ibm",
+                    "expiration_date": "2025-07-05"
+                },
+                "categories": [
+                    {
+                        "id": "644c95d4d2f1c175be910954",
+                        "name": "AI"
+                    },
+                    ...
+                ]
             }
         ```
 ### Categories
