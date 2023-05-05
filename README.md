@@ -103,8 +103,8 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
   - `GET /api/v1/users`: Fetch all users
   - `GET /api/v1/users/:id`: Fetch user info
 - [Certificates](#certificates)
-  - `GET /api/v1/certificates`: Fetch all certificates and also filtered by type and in the user's teams
-  - `GET /api/v1/certificates/:id`: Fetch certificate info
+  - `GET /api/v1/certificates`: Fetch all certificates
+  - `GET /api/v1/certificates/:type`: Fetch certificate filtered by type (`all`, `ibm`, `industry`, `my_teams`)
 - [Categories](#categories)
   - `GET /api/v1/categories`: Fetch all registered categories
   - `GET /api/v1/categories/:id`: Fetch category 
@@ -183,19 +183,6 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
 
 
 - `GET /api/v1/certificates`: Fetch all certificates
-    - Optional JSON body parameters
-        ```json
-        {
-            "type": "industry",
-            "my_teams": ""
-        }
-        ```
-        - Endpoint is dynamic, it can receive:
-            - No JSON parameters; returns all certificates
-            - `type` only; returns all certificates of `type`
-            - `my_teams` only; returns all certificates people in the logged user's team have
-            - Both `type` and `my_teams`; returns all certificates people in the logged user's teams have that are of `type`
-        - **Only presence on `my_teams` is evaluated**, therefore an empty string still enables filtering
     - Response
         ```json
         Status: 200 OK
@@ -219,25 +206,29 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
                 ...
             ]
         ```
-- `GET /api/v1/certificates/:id`: Fetch certificate info
+- `GET /api/v1/certificates/:type`: Fetch certificates by type
+    - Types: `all`, `ibm`, `industry`, `my_teams`
     - Response
         ```json
         JSON body:
-            {
-                "certificate": {
-                    "id": "643efe1cd2f1c148b579fd74"
-                    "name": "Watson Specialist v1",
-                    "type": "ibm",
-                    "expiration_date": "2025-07-05"
-                },
-                "categories": [
-                    {
-                        "id": "644c95d4d2f1c175be910954",
-                        "name": "AI"
+            [
+                {
+                    "certificate": {
+                        "id": "643efe1cd2f1c148b579fd74"
+                        "name": "Watson Specialist v1",
+                        "type": "ibm",
+                        "expiration_date": "2025-07-05"
                     },
-                    ...
-                ]
-            }
+                    "categories": [
+                        {
+                            "id": "644c95d4d2f1c175be910954",
+                            "name": "AI"
+                        },
+                        ...
+                    ]
+                },
+                ...
+            ]
         ```
 ### Categories
 - `GET /api/v1/categories`: Fetch categories
