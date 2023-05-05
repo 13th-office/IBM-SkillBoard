@@ -103,7 +103,7 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
   - `GET /api/v1/users`: Fetch all users
   - `GET /api/v1/users/:id`: Fetch user info
 - [Certificates](#certificates)
-  - `GET /api/v1/certificates`: Fetch all certificates
+  - `GET /api/v1/certificates`: Fetch all certificates and also filtered by type
   - `GET /api/v1/certificates/:id`: Fetch certificate info
 - [Categories](#categories)
   - `GET /api/v1/categories`: Fetch all registered categories
@@ -183,6 +183,12 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
 
 
 - `GET /api/v1/certificates`: Fetch all certificates
+    - Optional JSON body parameters
+        ```json
+        {
+            "type": "industry"
+        }
+        ```
     - Response
         ```json
         Status: 200 OK
