@@ -33,7 +33,7 @@ class Employee
 
   def certificates
     certificates = Certificate.where(:_id.in => (certificate_employees.pluck(:certificate_id)))
-    certificates.map { |certificate| { certificate: certificate.info, categories: certificate.categories } }
+    certificates.map { |certificate| certificate.all_info }
   end
 
   field :_id, type: String, default: ->{BSON::ObjectId.new.to_s}
