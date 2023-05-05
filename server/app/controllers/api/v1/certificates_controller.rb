@@ -38,7 +38,7 @@ class Api::V1::CertificatesController < ApplicationController
   
     # GET /certificates/1
     def show
-      render json: @certificates.map { |certificate| certificate.all_info }
+      render json: @certificate.all_info
     end
   
     # POST /certificates
