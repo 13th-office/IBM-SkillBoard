@@ -7,7 +7,6 @@ export interface Certificate {
   id: string;
   name: string;
   type: string;
-  categories: Category[];
   expiration_date: string;
 }
 export interface Category {
@@ -25,7 +24,7 @@ export interface User {
 
 export interface Team {
   id: string;
-  team_name: string;
+  name: string;
 }
 
 export interface TeamWithManager {

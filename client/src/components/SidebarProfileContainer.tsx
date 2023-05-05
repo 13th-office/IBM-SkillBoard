@@ -3,19 +3,6 @@ import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "./Loading/Loading";
 
-const id = "cr7id";
-const name = "Cristiano";
-const last_name = "Ronaldo";
-const email = "elbicho@ibm.com";
-const role = "Bicho Manager";
-const user = {
-  id,
-  name,
-  last_name,
-  email,
-  role,
-};
-
 const SidebarProfileContainer = () => {
   const fetchDetails = async () => {
     const response = await axios.get(

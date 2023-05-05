@@ -19,7 +19,7 @@ const ProfileTeamCard = ({ teamWithManager }: Props) => {
               <div className="flex items-center gap-1">
                 <RiTeamFill />
                 <p className="profile-team-card-team-name">
-                  {teamManager.team.team_name + " "}
+                  {teamManager.team.name + " "}
                 </p>
               </div>
               <div className="flex items-center">

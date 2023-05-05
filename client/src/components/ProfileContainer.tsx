@@ -1,218 +1,45 @@
 import React from "react";
 import Profile from "./Profile/Profile";
-
-const profile_info = {
-  user: {
-    id: "cr7id",
-    name: "Cristiano",
-    last_name: "Ronaldo",
-    role: "Bicho",
-    email: "cr7@ibm.com",
-  },
-  team: [
-    {
-      team: {
-        id: "1",
-        team_name: "Backend Management",
-      },
-      manager: {
-        id: "id",
-        name: "Camello",
-        last_name: "Petrolero",
-        email: "camello@ibm.com",
-        role: "Camello Manager",
-      },
-    },
-    {
-      team: {
-        id: "1",
-        team_name: "Backend Management",
-      },
-      manager: {
-        id: "id",
-        name: "Camello",
-        last_name: "Petrolero",
-        email: "camello@ibm.com",
-        role: "Camello Manager",
-      },
-    },
-    {
-      team: {
-        id: "1",
-        team_name: "Backend Management",
-      },
-      manager: {
-        id: "id",
-        name: "Camello",
-        last_name: "Petrolero",
-        email: "camello@ibm.com",
-        role: "Camello Manager",
-      },
-    },
-    {
-      team: {
-        id: "1",
-        team_name: "Backend Management",
-      },
-      manager: {
-        id: "id",
-        name: "Camello",
-        last_name: "Petrolero",
-        email: "camello@ibm.com",
-        role: "Camello Manager",
-      },
-    },
-    {
-      team: {
-        id: "1",
-        team_name: "Backend Management",
-      },
-      manager: {
-        id: "id",
-        name: "Camello",
-        last_name: "Petrolero",
-        email: "camello@ibm.com",
-        role: "Camello Manager",
-      },
-    },
-    {
-      team: {
-        id: "1",
-        team_name: "Backend Management",
-      },
-      manager: {
-        id: "id",
-        name: "Camello",
-        last_name: "Petrolero",
-        email: "camello@ibm.com",
-        role: "Camello Manager",
-      },
-    },
-  ],
-  cerificates: [
-    {
-      id: "dsadsa",
-      name: "Azure DevOps Certification",
-      type: "Industry",
-      categories: [
-        { id: "1234", name: "Azure" },
-        { id: "12345", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "21",
-      name: "Microsoft Teams Certification",
-      type: "Industry",
-      categories: [
-        { id: "12", name: "Microsoft" },
-        { id: "43", name: "Team Managment" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "45",
-      name: "IBM SkillBoard Ceritfication",
-      type: "IBM",
-      categories: [
-        { id: "32", name: "IBM" },
-        { id: "21", name: "Skills" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-    {
-      id: "56",
-      name: "AWS Certification",
-      type: "Industry",
-      categories: [
-        { id: "431", name: "Amazon" },
-        { id: "67", name: "DevOps" },
-      ],
-      expiration_date: "2024-04-01",
-    },
-  ],
-};
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "./Loading/Loading";
 
 const ProfileContainer = () => {
-  return (
-    <div>
-      <Profile
-        user={profile_info.user}
-        teamWithManager={profile_info.team}
-        certificates={profile_info.cerificates}
-      />
-    </div>
+  const params = useParams();
+  console.log(params);
+
+  const fetchDetails = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_SERVER_URL}/employees/${params.username}`,
+      { withCredentials: true }
+    );
+    return response.data;
+  };
+
+  const { isLoading, error, data } = useQuery(
+    [`profile${params.username}`],
+    fetchDetails
   );
+
+  if (isLoading || !data) {
+    <Loading />;
+  }
+  if (error) {
+    return <p>Error</p>;
+  }
+
+  if (data) {
+    return (
+      <div>
+        <Profile
+          user={data.employee}
+          teamWithManager={data.teams}
+          certificates={data.certificates}
+        />
+      </div>
+    );
+  }
 };
 
 export default ProfileContainer;

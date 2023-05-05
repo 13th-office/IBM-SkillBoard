@@ -1,11 +1,12 @@
 import "./ProfileCertificationCard.css";
-import { Certificate } from "../../../lib/types";
+import { Category, Certificate } from "../../../lib/types";
 
 interface Props {
   certificate: Certificate;
+  categories: Category[];
 }
 
-const ProfileCertificationCard = ({ certificate }: Props) => {
+const ProfileCertificationCard = ({ certificate, categories }: Props) => {
   return (
     <div className="profile-certifications-card shadow-md rounded-md hover:scale-105 ease-in-out duration-150">
       <div className="profile-certifications-card-title">
@@ -19,8 +20,12 @@ const ProfileCertificationCard = ({ certificate }: Props) => {
         </div>
         <div className="profile-certifications-card-section">
           <p className="text-sm text-gray-400 mb-3">Category</p>
-          {certificate.categories.map((category) => {
-            return <p className="text-sm">{category.name}</p>;
+          {categories.map((category, index) => {
+            return (
+              <p key={index} className="text-sm">
+                {category.name}
+              </p>
+            );
           })}
         </div>
       </div>
