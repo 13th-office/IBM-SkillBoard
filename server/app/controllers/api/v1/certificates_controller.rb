@@ -33,12 +33,12 @@ class Api::V1::CertificatesController < ApplicationController
         @certificates = @certificates.where(type: params[:type])
       end
   
-      render json: @certificates
+      render json: @certificates.map { |certificate| certificate.all_info }
     end
   
     # GET /certificates/1
     def show
-      render json: @certificates
+      render json: @certificates.map { |certificate| certificate.all_info }
     end
   
     # POST /certificates
