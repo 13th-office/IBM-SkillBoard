@@ -24,7 +24,7 @@ const RoutesAvailable = () => {
         <Sidebar />
         <Routes>
           <Route path="/" element={<DashboardScreen />}></Route>
-          <Route path="/profile" element={<ProfileScreen />}></Route>
+          <Route path="/profile/:username" element={<ProfileScreen />}></Route>
           <Route path="/myteams" element={<MyTeamsScreen />}></Route>
           <Route path="/allemployees" element={<AllEmployeesScreen />}></Route>
         </Routes>

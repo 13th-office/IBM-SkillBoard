@@ -10,7 +10,7 @@ interface Props {
 const SidebarProfile = ({ user }: Props) => {
   const navigate = useNavigate();
   return (
-    <Link to="/profile">
+    <Link to={`/profile/${user.email.split("@")[0]}`}>
       <div className="sidebar-profile gap-3">
         <div className="profile-picture">
           {user.name[0] + user.last_name[0]}
