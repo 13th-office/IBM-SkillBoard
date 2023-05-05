@@ -4,10 +4,14 @@ class Api::V1::CertificatesController < ApplicationController
 
     # GET /certificates
     def index
-      if !params[:type]
-        @certificates = Certificate.all
-      else
-        @certificates = Certificate.where(type: params[:type])
+      @certificates = Certificate.all
+
+      if params[:type]
+        if params[:type] != "ibm" && params[:type] != "industry"
+          render json: { error: "type must be either ibm or industry" }, status: :bad_request
+          return
+        end
+        @certificates = @certificates.where(type: params[:type])
       end
   
       render json: @certificates
