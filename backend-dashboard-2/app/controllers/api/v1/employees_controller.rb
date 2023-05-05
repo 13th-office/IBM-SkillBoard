@@ -39,11 +39,11 @@ class Api::V1::EmployeesController < ApplicationController
     @employee.destroy
   end
 
+  # GET /viewer
   def viewer
     @user = User.find_by(id: session[:user_id])
     @employee = Employee.find_by(email: @user.email)
     render json: { employee: @employee }
-
   end
 
   private
