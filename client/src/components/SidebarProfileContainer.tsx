@@ -19,7 +19,6 @@ const SidebarProfileContainer = () => {
   }
 
   if (error) {
-    console.log(error);
     return <p>error</p>;
   }
 

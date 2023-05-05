@@ -7,7 +7,6 @@ import Loading from "./Loading/Loading";
 
 const ProfileContainer = () => {
   const params = useParams();
-  console.log(params);
 
   const fetchDetails = async () => {
     const response = await axios.get(

@@ -13,7 +13,6 @@ interface Props {
 }
 
 const ProfileCertifications = ({ user, certificates }: Props) => {
-  console.log(certificates);
   return (
     <div className="profile-certifications-general">
       <h3 className="profile-certifications-title">
