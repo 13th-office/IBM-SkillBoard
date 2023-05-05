@@ -190,7 +190,12 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
             "my_teams": ""
         }
         ```
-        - Sending `my_teams` returns certificates employees in any of the teams the logged in user is a member of (as employee or manager), only presence is evaluated, therefore an empty string would still enable filtering
+        - Endpoint is dynamic, it can receive:
+            - No JSON parameters
+            - `type` only
+            - `my_teams` only
+            - Both `type` and `my_teams`
+        - Sending `my_teams` returns certificates employees in any of the teams the logged in user is a member of (as employee or manager), **only presence is evaluated**, therefore an empty string would still enable filtering
     - Response
         ```json
         Status: 200 OK
