@@ -89,7 +89,7 @@ jobs:
 
       - name: Retrieve server status
         run: |
-          ssh my-vps 'tmux list-sessions' | grep -Eo "^client: "
+          ssh my-vps 'tmux list-sessions' | grep -Eo "^server: "
 
       - name: Send Discord message on success
         if: ${{ success() }}
