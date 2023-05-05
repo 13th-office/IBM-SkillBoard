@@ -1,6 +1,6 @@
 class Api::V1::EmployeesController < ApplicationController
   include Authentication
-  before_action :set_employee, only: %i[ show update destroy ]
+  before_action :set_employee, only: %i[ update destroy ]
 
   # GET /employees
   def index
@@ -11,6 +11,7 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees/1
   def show
+    @employee = Employee.find_by(email: params[:id]+"@ibm.com")
     render json: { employee: @employee.info, teams: @employee.teams, certificates: @employee.certificates }
   end
 

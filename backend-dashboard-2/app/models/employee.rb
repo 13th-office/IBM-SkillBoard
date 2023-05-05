@@ -28,7 +28,7 @@ class Employee
   
   def teams #Finds the teams in where the employee is associated to, being a manager or not.
     teams = Team.where(:id.in =>(employee_teams.pluck(:team_id)+manager_teams.pluck(:team_id)))
-    teams.map { |team| { team: team.info, managers: team.managers } }
+    teams.map { |team| { team: team.info, manager: team.managers[0] } }
   end
 
   def certificates
