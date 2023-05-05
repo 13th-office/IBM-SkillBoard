@@ -4,7 +4,26 @@ class Api::V1::CertificatesController < ApplicationController
 
     # GET /certificates
     def index
-      @certificates = Certificate.all
+      if !params[:my_team]
+        @certificates = Certificate.all
+      else
+        user = User.find_by(id: session[:user_id])
+        employee = user.employee
+        employee_id = employee.employee_id
+        teams = Team.where(:id.in =>(
+          EmployeeTeam.where(employee_id: employee_id).pluck(:team_id) +
+          ManagerTeam.where(employee_id: employee_id).pluck(:team_id)
+        ))
+        team_ids = teams.map { |team| team[:id] }
+        employees = Employee.where(:id.in => (
+          EmployeeTeam.where(:team_id.in => team_ids).pluck(:employee_id) +
+          ManagerTeam.where(:team_id.in => team_ids).pluck(:employee_id)
+        ))
+        employee_ids = employees.map{|employee| employee[:id]}
+        @certificates = Certificate.where(:id.in => (
+          CertificateEmployee.where(:employee_id.in => employee_ids).pluck(:certificate_id)
+        ))
+      end
 
       if params[:type]
         if params[:type] != "ibm" && params[:type] != "industry"
