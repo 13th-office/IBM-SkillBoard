@@ -85,7 +85,7 @@ jobs:
           dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
       - name: Deploy server
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/backend-dashboard-2/ && ./redeploy.sh'
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/server/ && ./redeploy.sh'
 
       - name: Retrieve server status
         run: |
