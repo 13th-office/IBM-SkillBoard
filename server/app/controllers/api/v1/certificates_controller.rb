@@ -1,12 +1,23 @@
 class Api::V1::CertificatesController < ApplicationController
     include Authentication
-    before_action :set_certificate, only: %i[ show update destroy ]
+    before_action :set_certificate, only: %i[ update destroy ]
 
     # GET /certificates
     def index
-      if !params[:my_team]
+      @certificates = Certificate.all
+
+      render json: @certificates.map { |certificate| certificate.all_info }
+    end
+  
+    # GET /certificates/:type
+    def show
+      type = params[:id]
+
+      if type == "all"
         @certificates = Certificate.all
-      else
+      elsif type == "ibm" || type == "industry"
+        @certificates = Certificate.where(type: type)
+      elsif type == "my_teams"
         user = User.find_by(id: session[:user_id])
         employee = user.employee
         employee_id = employee.employee_id
@@ -23,22 +34,12 @@ class Api::V1::CertificatesController < ApplicationController
         @certificates = Certificate.where(:id.in => (
           CertificateEmployee.where(:employee_id.in => employee_ids).pluck(:certificate_id)
         ))
+      else
+        render json: { error: "type must be all, ibm, industry, or my_teams" }, status: :bad_request
+        return
       end
 
-      if params[:type]
-        if params[:type] != "ibm" && params[:type] != "industry"
-          render json: { error: "type must be either ibm or industry" }, status: :bad_request
-          return
-        end
-        @certificates = @certificates.where(type: params[:type])
-      end
-  
       render json: @certificates.map { |certificate| certificate.all_info }
-    end
-  
-    # GET /certificates/1
-    def show
-      render json: @certificate.all_info
     end
   
     # POST /certificates
