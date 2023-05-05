@@ -4,7 +4,11 @@ class Api::V1::CertificatesController < ApplicationController
 
     # GET /certificates
     def index
-      @certificates = Certificate.all
+      if !params[:type]
+        @certificates = Certificate.all
+      else
+        @certificates = Certificate.where(type: params[:type])
+      end
   
       render json: @certificates
     end
