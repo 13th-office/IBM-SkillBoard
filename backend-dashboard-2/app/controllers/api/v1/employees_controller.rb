@@ -40,8 +40,9 @@ class Api::V1::EmployeesController < ApplicationController
   end
 
   def viewer
-    @employee = Employee.find_by(id: session[:user_id])
-    render json: { employee: @employee.info }
+    @user = User.find_by(id: session[:user_id])
+    @employee = Employee.find_by(email: @user.email)
+    render json: { employee: @employee }
 
   end
 
