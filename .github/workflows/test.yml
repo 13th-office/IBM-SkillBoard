@@ -42,7 +42,7 @@ jobs:
       # Add Rails test suite setup
 
       - name: Run tests
-        run: cd backend-dashboard-2/ && ./run_test.sh
+        run: cd server/ && ./run_test.sh
 
       - name: Send Discord message on failure
         if: ${{ failure() && ( inputs.environment == 'dev' || inputs.environment == 'main' ) }}

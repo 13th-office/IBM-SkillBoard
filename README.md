@@ -104,7 +104,7 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
   - `GET /api/v1/users/:id`: Fetch user info
 - [Certificates](#certificates)
   - `GET /api/v1/certificates`: Fetch all certificates
-  - `GET /api/v1/certificates/:id`: Fetch certificate info
+  - `GET /api/v1/certificates/:type`: Fetch certificate filtered by type (`all`, `ibm`, `industry`, `my_teams`)
 - [Categories](#categories)
   - `GET /api/v1/categories`: Fetch all registered categories
   - `GET /api/v1/categories/:id`: Fetch category 
@@ -189,28 +189,46 @@ Note: if an endpoint is not listed here, a complete list can be retrieved by run
         JSON body:
             [
                 {
-                    "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
-                    "name": "Watson Specialist v1",
-                    "type": "ibm",
-                    "expiration_date": "2024-04-01",
-                    "created_at": "2023-04-18T20:31:24.184Z",
-                    "updated_at": "2023-04-18T20:31:24.184Z"
+                    "certificate": {
+                        "id": "643efe1cd2f1c148b579fd74"
+                        "name": "Watson Specialist v1",
+                        "type": "ibm",
+                        "expiration_date": "2025-07-05"
+                    },
+                    "categories": [
+                        {
+                            "id": "644c95d4d2f1c175be910954",
+                            "name": "AI"
+                        },
+                        ...
+                    ]
                 },
                 ...
             ]
         ```
-- `GET /api/v1/certificates/:id`: Fetch certificate info
+- `GET /api/v1/certificates/:type`: Fetch certificates by type
+    - Types: `all`, `ibm`, `industry`, `my_teams`
     - Response
         ```json
         JSON body:
-            {
-                "_id": { "$oid": "643efe1cd2f1c148b579fd74" },
-                "name": "Watson Specialist v1",
-                "type": "ibm",
-                "expiration_date": "2024-04-01",
-                "created_at": "2023-04-18T20:31:24.184Z",
-                "updated_at": "2023-04-18T20:31:24.184Z"
-            }
+            [
+                {
+                    "certificate": {
+                        "id": "643efe1cd2f1c148b579fd74"
+                        "name": "Watson Specialist v1",
+                        "type": "ibm",
+                        "expiration_date": "2025-07-05"
+                    },
+                    "categories": [
+                        {
+                            "id": "644c95d4d2f1c175be910954",
+                            "name": "AI"
+                        },
+                        ...
+                    ]
+                },
+                ...
+            ]
         ```
 ### Categories
 - `GET /api/v1/categories`: Fetch categories

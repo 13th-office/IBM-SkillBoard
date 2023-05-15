@@ -34,4 +34,11 @@ class Certificate
     categories.map { |category| category.info }
   end
 
+  def all_info
+    {
+      certificate: self.info,
+      categories: self.categories,
+    }
+  end
+
 end
