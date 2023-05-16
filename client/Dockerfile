@@ -6,7 +6,7 @@ ENV PATH /react/node_modules/.bin:$PATH
 
 COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
@@ -14,6 +14,4 @@ RUN npm run build
 
 EXPOSE 8080
 
-WORKDIR /react/dist
-
-CMD ["http-server", "--cors"]
+CMD ["npx", "serve", "build"]
