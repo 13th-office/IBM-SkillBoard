@@ -2,7 +2,7 @@ FROM ruby:3.0.2
 
 WORKDIR /rails
 
-COPY Gemfile Gemfile.lock .
+COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 

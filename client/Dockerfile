@@ -4,7 +4,7 @@ WORKDIR /react
 
 ENV PATH /react/node_modules/.bin:$PATH
 
-COPY package.json package-lock.json .
+COPY package.json package-lock.json ./
 
 RUN npm install
 
