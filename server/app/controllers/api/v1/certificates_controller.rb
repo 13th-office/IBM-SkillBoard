@@ -44,7 +44,7 @@ class Api::V1::CertificatesController < ApplicationController
   
     # POST /certificates
     def create
-      @certificate = Certificate.new(name: params[:name],issue_date: params[:issue_date], expiration_date: params[:expiration_date], type: params[:type])
+      @certificate = Certificate.new(name: params[:name], expiration_date: params[:expiration_date], type: params[:type])
   
       if @certificate.save
         render json: @certificate, status: :created, location: api_v1_certificate_url(@certificate)
@@ -52,16 +52,7 @@ class Api::V1::CertificatesController < ApplicationController
         render json: @certificate.errors, status: :unprocessable_entity
       end
       
-    end
-
-    def mass_create
-      statuses = []
-      params[:certificates].each do |certificate_params|
-         @certificate = Certificate.new(name: certificate_params[:name], issue_date: certificate_params[:issue_date], expiration_date: certificate_params[:expiration_date], type: certificate_params[:type])
-         statuses << ( @certificate.save ? "OK" : @certificate.errors )
-    end if params[:certificates]
-      render json: statuses
-    end   
+    end  
   
     # PATCH/PUT /certificates/1
     def update
@@ -85,6 +76,6 @@ class Api::V1::CertificatesController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def certificate_params
-        params.fetch(:certificate).permit(:name, :issue_date, :expiration_date, :type)
+        params.fetch(:certificate).permit(:name, :expiration_date, :type)
       end
 end
