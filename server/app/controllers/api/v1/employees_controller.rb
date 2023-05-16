@@ -11,7 +11,8 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees/1
   def show
-    @employee = Employee.find_by(email: params[:id]+"@ibm.com")
+    @employee = Employee.find(params[:id])
+    #@employee = Employee.find_by(email: params[:id]+"@ibm.com")
     render json: { employee: @employee.info, teams: @employee.teams, certificates: @employee.certificates }
   end
 
@@ -44,7 +45,13 @@ class Api::V1::EmployeesController < ApplicationController
   def viewer
     @user = User.find_by(id: session[:user_id])
     @employee = Employee.find_by(email: @user.email)
-    render json: { employee: @employee }
+    render json: { employee: @employee.info }
+  end
+
+  def myteamviewer
+    @user = User.find_by(id: session[:user_id])
+    @employee = Employee.find_by(email: @user.email)
+    render json: { teams: @employee.teams}
   end
 
   private

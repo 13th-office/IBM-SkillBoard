@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       resources :employees do
         get "viewer", on: :collection
+        get "myteamviewer", on: :collection
       end
       resources :certificates do
         post 'mass_create', on: :collection
