@@ -12,4 +12,6 @@ RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 EXPOSE 3000
 
+RUN chmod +x /rails/docker-entrypoint.sh
+
 ENTRYPOINT ["/rails/docker-entrypoint.sh"]
