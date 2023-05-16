@@ -1,0 +1,15 @@
+version: "3"
+services:
+  rails:
+    container_name: rails
+    build: ./server/
+    restart: always
+    ports:
+      - "3000:3000"
+
+  react:
+    container_name: react
+    build: ./client/
+    restart: always
+    ports:
+      - "8080:8080"
