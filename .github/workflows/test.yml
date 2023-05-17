@@ -18,7 +18,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Add React test suite setup
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install packages
+        run: cd client/ && npm ci
 
       - name: Run tests
         run: cd client/ && ./run_test.sh
