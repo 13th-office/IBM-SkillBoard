@@ -66,8 +66,8 @@ jobs:
           status: 1
           activity: "Latest commit fetch for deployment"
 
-  deploy-back-end:
-    name: Deploy back end to VPS
+  deploy:
+    name: Deploy to VPS
     needs: [get-valid-branch, fetch-latest-commit]
     runs-on: ubuntu-latest
     steps:
