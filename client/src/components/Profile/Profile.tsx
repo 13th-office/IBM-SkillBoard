@@ -1,4 +1,9 @@
-import { Certificate, TeamWithManager, User } from "../../../lib/types";
+import {
+  Certificate,
+  CertificateResponse,
+  TeamWithManager,
+  User,
+} from "../../../lib/types";
 import ProfileInfoCard from "../ProfileInfoCard/ProfileInfoCard";
 import ProfileTeamCard from "../ProfileTeamCard/ProfileTeamCard";
 import ProfileCertifications from "../ProfileCertifications/ProfileCertifications";
@@ -7,7 +12,7 @@ import "./Profile.css";
 interface Props {
   user: User;
   teamWithManager: TeamWithManager[];
-  certificates: Certificate[];
+  certificates: CertificateResponse[];
 }
 
 const Profile = ({ user, teamWithManager, certificates }: Props) => {

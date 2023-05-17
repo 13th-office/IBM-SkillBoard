@@ -7,7 +7,13 @@ export interface Certificate {
   id: string;
   name: string;
   type: string;
+  categories: Category[];
   expiration_date: string;
+}
+
+export interface CertificateResponse {
+  certificate: Certificate;
+  categories: Category[];
 }
 export interface Category {
   id: string;
