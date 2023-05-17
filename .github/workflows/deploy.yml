@@ -55,7 +55,7 @@ jobs:
           dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
       - name: Fetch latest commit
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && git fetch && git reset origin/${{ needs.get-valid-branch.outputs.branch }} --hard'
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && git checkout ${{ needs.get-valid-branch.outputs.branch }} --force && git fetch && git reset origin/${{ needs.get-valid-branch.outputs.branch }} --hard'
 
       - name: Send Discord message on failure
         if: ${{ failure() }}
