@@ -30,16 +30,22 @@ class Api::V1::AuthController < ApplicationController
     session[:user_id] = data['localId']
     user = User.find_by(id: session[:user_id])
     if user.present?
+      employee.user = user
+      unless employee.save
+        render status: :unprocessable_entity, json: employee.errors
+        return
+      end
       render status: :ok, json: { idToken: data['idToken'], newUser: 0 }
       return
     end
 
     user = User.new(id: session[:user_id], email: email, employee_id: employee.id)
-    if user.save
-      render status: :ok, json: { idToken: data['idToken'], newUser: 1 }
-    else
+    unless user.save
       render status: :unprocessable_entity, json: user.errors
+      return
     end
+
+    render status: :ok, json: { idToken: data['idToken'], newUser: 1 }
   end
 
   # POST /logout
