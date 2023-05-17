@@ -24,7 +24,7 @@ jobs:
           node-version: 12
 
       - name: Install packages
-        run: cd client/ && npm ci
+        run: cd client/ && npm install
 
       - name: Run tests
         run: cd client/ && ./run_test.sh
