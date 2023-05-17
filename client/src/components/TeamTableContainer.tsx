@@ -5,7 +5,7 @@ const TeamTableContainer = () => {
     {
       team: {
         id: "1",
-        team_name: "Team A",
+        name: "Team A",
       },
       employees: [
         {
@@ -55,7 +55,7 @@ const TeamTableContainer = () => {
     {
       team: {
         id: "2",
-        team_name: "Team B",
+        name: "Team B",
       },
       employees: [
         {
@@ -105,7 +105,7 @@ const TeamTableContainer = () => {
     {
       team: {
         id: "3",
-        team_name: "Team C",
+        name: "Team C",
       },
       employees: [
         {
