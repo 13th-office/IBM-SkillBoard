@@ -12,6 +12,8 @@ COPY . .
 
 RUN npm run build
 
+WORKDIR /react/dist
+
 EXPOSE 8080
 
-CMD ["npx", "serve", "build"]
+CMD ["npx", "http-server", "--cors"]
