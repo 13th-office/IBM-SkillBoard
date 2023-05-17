@@ -84,55 +84,11 @@ jobs:
           dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
           dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
 
-      - name: Deploy server
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/server/ && ./redeploy.sh'
+      - name: Launch Docker Compose containers
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && ./redeploy.sh'
 
-      - name: Retrieve server status
-        run: |
-          ssh my-vps 'tmux list-sessions' | grep -Eo "^server: "
-
-      - name: Send Discord message on success
-        if: ${{ success() }}
-        uses: ./.github/actions/send-status
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          branch: ${{ needs.get-valid-branch.outputs.branch }}
-          status: 0
-          activity: "Back end deployment"
-
-      - name: Send Discord message on failure
-        if: ${{ failure() }}
-        uses: ./.github/actions/send-status
-        with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          branch: ${{ needs.get-valid-branch.outputs.branch }}
-          status: 1
-          activity: "Back end deployment"
-
-  deploy-front-end:
-    name: Deploy front end to VPS
-    needs: [get-valid-branch, fetch-latest-commit]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure SSH connection
-        uses: ./.github/actions/configure-ssh
-        with:
-          branch: ${{ needs.get-valid-branch.outputs.branch }}
-          main_ssh_ip: ${{ secrets.MAIN_SSH_IP }}
-          main_ssh_user: ${{ secrets.MAIN_SSH_USER }}
-          main_ssh_private_key: ${{ secrets.MAIN_SSH_PRIVATE_KEY }}
-          dev_ssh_ip: ${{ secrets.DEV_SSH_IP }}
-          dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
-          dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
-
-      - name: Deploy client
-        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }}/client/ && ./redeploy.sh'
-
-      - name: Retrieve client status
-        run: |
-          ssh my-vps 'tmux list-sessions' | grep -Eo "^client: "
+      - name: Retrieve status
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && docker compose ps'
 
       - name: Send Discord message on success
         if: ${{ success() }}
@@ -141,7 +97,7 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           branch: ${{ needs.get-valid-branch.outputs.branch }}
           status: 0
-          activity: "Front end deployment"
+          activity: "Deployment"
 
       - name: Send Discord message on failure
         if: ${{ failure() }}
@@ -150,4 +106,4 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           branch: ${{ needs.get-valid-branch.outputs.branch }}
           status: 1
-          activity: "Front end deployment"
+          activity: "Deployment"
