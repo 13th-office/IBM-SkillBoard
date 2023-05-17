@@ -39,6 +39,8 @@ const ProfileContainer = () => {
       </div>
     );
   }
+
+  return <Loading />;
 };
 
 export default ProfileContainer;

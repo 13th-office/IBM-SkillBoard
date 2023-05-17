@@ -6,7 +6,7 @@ import Loading from "./Loading/Loading";
 const SidebarProfileContainer = () => {
   const fetchDetails = async () => {
     const response = await axios.get(
-      `${import.meta.env.VITE_SERVER_URL}/viewer`,
+      `${import.meta.env.VITE_SERVER_URL}/employees/viewer`,
       { withCredentials: true }
     );
     return response.data;
