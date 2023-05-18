@@ -22,8 +22,13 @@ const EmployeesContainer = () => {
   }
 
   if (data) {
-    return <Employees employees={data} />;
+    return (
+      <div>
+        <Employees employees={data} />;
+      </div>
+    );
   }
+  return <Loading />;
 };
 
 export default EmployeesContainer;
