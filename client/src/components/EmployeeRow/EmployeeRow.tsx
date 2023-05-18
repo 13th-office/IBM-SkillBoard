@@ -18,8 +18,6 @@ const EmployeeRow = ({ employee }: Props) => {
         <div
           className="employee-row-profile-button"
           onClick={() => {
-            // navigate(`/profile/${employee.email.split("@")[0]}`);
-            console.log(employee);
             navigate(`/profile/${employee.id}`);
           }}
         >
