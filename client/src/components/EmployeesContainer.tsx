@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import Loading from "./Loading/Loading";
 
 const EmployeesContainer = () => {
-  const fetchDetails = async () => {
+  const fetchEmployees = async () => {
     const response = await axios.get(
       `${import.meta.env.VITE_SERVER_URL}/employees`,
       { withCredentials: true }
@@ -12,7 +12,7 @@ const EmployeesContainer = () => {
     return response.data;
   };
 
-  const { isLoading, error, data } = useQuery([`employees`], fetchDetails);
+  const { isLoading, error, data } = useQuery([`employees`], fetchEmployees);
 
   if (isLoading || !data) {
     <Loading />;
