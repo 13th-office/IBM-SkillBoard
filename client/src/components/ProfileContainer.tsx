@@ -1,4 +1,3 @@
-import React from "react";
 import Profile from "./Profile/Profile";
 import { useParams } from "react-router-dom";
 import axios from "axios";

@@ -18,7 +18,7 @@ const EmployeeRow = ({ employee }: Props) => {
         <div
           className="employee-row-profile-button"
           onClick={() => {
-            navigate(`/profile/${employee.id}`);
+            navigate(`/profile/${employee.email.split("@")[0]}`);
           }}
         >
           <p className="cursor-pointer">View Profile</p>
