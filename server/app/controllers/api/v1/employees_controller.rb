@@ -4,8 +4,7 @@ class Api::V1::EmployeesController < ApplicationController
 
   # GET /employees
   def index
-    @employees = Employee.all.map { |employee| { employee: @employee.info, teams: @employee.teams, certificates: @employee.certificates } }
-
+    @employees = Employee.all
     render json: @employees
   end
 
