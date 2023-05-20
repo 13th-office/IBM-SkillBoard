@@ -8,10 +8,12 @@ interface Props {
 const Loading = ({ type, mainColor }: Props) => {
   if (type) {
     return (
-      <div className="lds-facebook">
-        <div className={mainColor ? "bg-white" : "bg-[#001D6C]"}></div>
-        <div className={mainColor ? "bg-white" : "bg-[#001D6C]"}></div>
-        <div className={mainColor ? "bg-white" : "bg-[#001D6C]"}></div>
+      <div className="w-full flex justify-center h-screen">
+        <div className="lds-facebook">
+          <div className={mainColor ? "bg-white" : "bg-[#001D6C]"}></div>
+          <div className={mainColor ? "bg-white" : "bg-[#001D6C]"}></div>
+          <div className={mainColor ? "bg-white" : "bg-[#001D6C]"}></div>
+        </div>
       </div>
     );
   } else {

@@ -21,7 +21,7 @@ const ProfileContainer = () => {
   );
 
   if (isLoading || !data) {
-    <Loading />;
+    <Loading type={true} mainColor={false} />;
   }
   if (error) {
     return <p>Error</p>;
@@ -39,7 +39,7 @@ const ProfileContainer = () => {
     );
   }
 
-  return <Loading />;
+  return <Loading type={true} mainColor={false} />;
 };
 
 export default ProfileContainer;

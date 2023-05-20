@@ -15,7 +15,7 @@ const EmployeesContainer = () => {
   const { isLoading, error, data } = useQuery([`employees`], fetchEmployees);
 
   if (isLoading || !data) {
-    <Loading />;
+    <Loading type={true} mainColor={false} />;
   }
   if (error) {
     return <p>Error</p>;
@@ -28,7 +28,7 @@ const EmployeesContainer = () => {
       </div>
     );
   }
-  return <Loading />;
+  return <Loading type={true} mainColor={false} />;
 };
 
 export default EmployeesContainer;

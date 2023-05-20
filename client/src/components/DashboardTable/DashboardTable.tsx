@@ -92,9 +92,7 @@ const DashboardTable = ({ data, changeType, isLoading, error }: Props) => {
 
       <div className="w-full">
         {(isLoading || (!data && !error)) && (
-          <div className="w-full flex justify-center h-screen">
-            <Loading type={true} mainColor={false} />
-          </div>
+          <Loading type={true} mainColor={false} />
         )}
         {error && <p>Error</p>}
       </div>
