@@ -15,7 +15,7 @@ const TeamTableContainer = () => {
   const { isLoading, error, data } = useQuery(["myteamviewer"], fetchDetails);
 
   if (isLoading || !data) {
-    return <Loading />;
+    return <Loading type={true} mainColor={false} />;
   }
 
   if (error) {
