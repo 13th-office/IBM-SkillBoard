@@ -46,8 +46,6 @@ const options = [
 ];
 
 const DashboardTable = ({ certificates, setType }: Props) => {
-  const [values, setValues] = useState("All");
-
   return (
     <div className="flex flex-col w-full max-h-[90%] DashboardTable">
       <div className="DashboardTable_Filters mb-3">
@@ -58,7 +56,7 @@ const DashboardTable = ({ certificates, setType }: Props) => {
             label: "All",
             icon: <BsCircleFill color="#ffffff" />,
           }}
-          onChange={(values) => values && setValues(values.value)}
+          onChange={(values) => values && setType(values.value)}
           placeholder="All"
           className="shadow-md text-sm"
           //@ts-ignore
@@ -85,7 +83,7 @@ const DashboardTable = ({ certificates, setType }: Props) => {
       <div className="overflow-y-auto overflow-x-hidden">
         {certificates.map((certificate, index) => (
           <CertificationRow
-            key={`${certificate.id}`}
+            key={`${certificate.id} ${index}`}
             certificate={certificate}
           />
         ))}
