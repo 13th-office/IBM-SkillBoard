@@ -3,6 +3,7 @@ import "./CertificationRow.css";
 import { BsCircleFill } from "react-icons/bs";
 interface Props {
   certificate: Certificate;
+  categories: Category[];
 }
 
 interface Colors {
@@ -17,7 +18,7 @@ const colors: Colors = {
   Industry: "#658eff",
 };
 
-const CertificationRow = ({ certificate }: Props) => {
+const CertificationRow = ({ certificate, categories }: Props) => {
   return (
     <div className="certification-row-general drop-shadow-md hover:scale-105 ease-in-out duration-150">
       <div>
@@ -29,7 +30,7 @@ const CertificationRow = ({ certificate }: Props) => {
       <p>{certificate.type}</p>
 
       <ul>
-        {certificate.categories.map((item, i) => {
+        {categories.map((item, i) => {
           return (
             <li key={i} className="certification-row-name">
               - {item.name}
@@ -38,7 +39,7 @@ const CertificationRow = ({ certificate }: Props) => {
         })}
       </ul>
 
-      <p>69%</p>
+      <p>{Math.floor(Math.random() * 100)}%</p>
     </div>
   );
 };

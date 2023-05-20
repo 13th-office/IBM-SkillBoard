@@ -7,7 +7,6 @@ export interface Certificate {
   id: string;
   name: string;
   type: string;
-  categories: Category[];
   expiration_date: string;
 }
 

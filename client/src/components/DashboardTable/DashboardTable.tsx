@@ -1,13 +1,15 @@
 import CertificationRow from "../CertificationRow/CertificationRow";
-import { Certificate } from "../../../lib/types";
+import { Certificate, CertificateResponse } from "../../../lib/types";
 import "./DashboardTable.css";
 import { BsCircleFill } from "react-icons/bs";
 import Select from "react-select";
 import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+
 interface Props {
-  certificates: Certificate[];
-  setType: Dispatch<SetStateAction<string>>;
+  data: CertificateResponse[];
+  changeType: (change: string) => void;
 }
 
 interface Colors {
@@ -24,39 +26,43 @@ const colors: Colors = {
 
 const options = [
   {
-    value: "All",
+    value: "all",
     label: "All",
     icon: <BsCircleFill color={"#FFFFFF"} />,
   },
   {
-    value: "Industry",
+    value: "industry",
     label: "Industry",
     icon: <BsCircleFill color={colors["Industry" as keyof Colors]} />,
   },
   {
-    value: "IBM",
+    value: "ibm",
     label: "IBM",
     icon: <BsCircleFill color={colors["IBM" as keyof Colors]} />,
   },
   {
-    value: "MyTeam",
+    value: "my_teams",
     label: "MyTeam",
     icon: <BsCircleFill color={colors["MyTeam" as keyof Colors]} />,
   },
 ];
 
-const DashboardTable = ({ certificates, setType }: Props) => {
+const DashboardTable = ({ data, changeType }: Props) => {
   return (
     <div className="flex flex-col w-full max-h-[90%] DashboardTable">
       <div className="DashboardTable_Filters mb-3">
         <Select
           options={options}
           defaultValue={{
-            value: "All",
+            value: "all",
             label: "All",
             icon: <BsCircleFill color="#ffffff" />,
           }}
-          onChange={(values) => values && setType(values.value)}
+          onChange={(values) => {
+            if (values) {
+              changeType(values.value);
+            }
+          }}
           placeholder="All"
           className="shadow-md text-sm"
           //@ts-ignore
@@ -81,10 +87,11 @@ const DashboardTable = ({ certificates, setType }: Props) => {
         <p className="font-semibold text-sm">Industry compatiblity</p>
       </div>
       <div className="overflow-y-auto overflow-x-hidden">
-        {certificates.map((certificate, index) => (
+        {data.map((data, index) => (
           <CertificationRow
-            key={`${certificate.id} ${index}`}
-            certificate={certificate}
+            key={`${data.certificate.id} ${index}`}
+            certificate={data.certificate}
+            categories={data.categories}
           />
         ))}
       </div>
