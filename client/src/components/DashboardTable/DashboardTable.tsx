@@ -90,7 +90,7 @@ const DashboardTable = ({ data, changeType, isLoading, error }: Props) => {
         <p className="font-semibold text-sm">Industry compatiblity</p>
       </div>
 
-      {(isLoading || (!data && !error)) && <Loading />}
+      {(isLoading || (!data && !error)) && <Loading mainColor={false} />}
       {error && <p>Error</p>}
       {data && (
         <div className="overflow-y-auto overflow-x-hidden">
