@@ -1,5 +1,8 @@
-import React from "react";
+import { useState } from "react";
 import DashboardTable from "./DashboardTable/DashboardTable";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "./Loading/Loading";
 
 const DashboardTableContainer = () => {
   const certificates = [
@@ -125,7 +128,30 @@ const DashboardTableContainer = () => {
     },
   ];
 
-  return <DashboardTable certificates={certificates} />;
+  const [type, setType] = useState("all");
+
+  const fetchDashboard = async () => {
+    const response = await axios.get(
+      `${import.meta.env.VITE_SERVER_URL}/certificates/${type}`,
+      { withCredentials: true }
+    );
+    return response.data;
+  };
+
+  const { isLoading, error, data } = useQuery([`employees`], fetchDashboard);
+
+  if (isLoading || !data) {
+    <Loading />;
+  }
+  if (error) {
+    return <p>Error</p>;
+  }
+
+  if (data) {
+    console.log(data);
+    return <DashboardTable certificates={data} setType={setType} />;
+  }
+  return <Loading />;
 };
 
 export default DashboardTableContainer;

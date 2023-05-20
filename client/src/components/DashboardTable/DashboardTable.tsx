@@ -4,8 +4,10 @@ import "./DashboardTable.css";
 import { BsCircleFill } from "react-icons/bs";
 import Select from "react-select";
 import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 interface Props {
   certificates: Certificate[];
+  setType: Dispatch<SetStateAction<string>>;
 }
 
 interface Colors {
@@ -43,7 +45,7 @@ const options = [
   },
 ];
 
-const DashboardTable = ({ certificates }: Props) => {
+const DashboardTable = ({ certificates, setType }: Props) => {
   const [values, setValues] = useState("All");
 
   return (
