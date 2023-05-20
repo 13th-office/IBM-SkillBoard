@@ -1,11 +1,6 @@
 import React from "react";
 import "./ProfileCertifications.css";
-import {
-  Category,
-  Certificate,
-  User,
-  CertificateResponse,
-} from "../../../lib/types";
+import { User, CertificateResponse } from "../../../lib/types";
 import ProfileCertificationCard from "../ProfileCertificationCard/ProfileCertificationCard";
 interface Props {
   user: User;

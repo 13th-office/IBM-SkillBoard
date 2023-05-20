@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import DashboardTable from "./DashboardTable/DashboardTable";
 import axios from "axios";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import Loading from "./Loading/Loading";
 
 const DashboardTableContainer = () => {
   const [type, setType] = useState("all");
@@ -27,17 +26,14 @@ const DashboardTableContainer = () => {
     queryFn: fetchDashboard,
   });
 
-  if (isLoading || !data) {
-    <Loading />;
-  }
-  if (error) {
-    return <p>Error</p>;
-  }
-
-  if (data) {
-    return <DashboardTable data={data} changeType={changeType} />;
-  }
-  return <Loading />;
+  return (
+    <DashboardTable
+      data={data}
+      changeType={changeType}
+      isLoading={isLoading}
+      error={error}
+    />
+  );
 };
 
 export default DashboardTableContainer;

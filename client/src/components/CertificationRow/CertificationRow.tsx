@@ -7,15 +7,15 @@ interface Props {
 }
 
 interface Colors {
-  IBM: string;
-  MyTeam: string;
-  Industry: string;
+  ibm: string;
+  my_team: string;
+  industry: string;
 }
 
 const colors: Colors = {
-  IBM: "#001756",
-  MyTeam: "#b40000",
-  Industry: "#658eff",
+  ibm: "#001756",
+  industry: "#b40000",
+  my_team: "#658eff",
 };
 
 const CertificationRow = ({ certificate, categories }: Props) => {

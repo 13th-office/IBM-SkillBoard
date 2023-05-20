@@ -6,22 +6,25 @@ import Select from "react-select";
 import { useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import Loading from "../Loading/Loading";
 
 interface Props {
   data: CertificateResponse[];
   changeType: (change: string) => void;
+  isLoading: boolean;
+  error: any;
 }
 
 interface Colors {
-  IBM: string;
-  MyTeam: string;
-  Industry: string;
+  ibm: string;
+  my_team: string;
+  industry: string;
 }
 
 const colors: Colors = {
-  IBM: "#001756",
-  MyTeam: "#b40000",
-  Industry: "#658eff",
+  ibm: "#001756",
+  industry: "#b40000",
+  my_team: "#658eff",
 };
 
 const options = [
@@ -33,21 +36,21 @@ const options = [
   {
     value: "industry",
     label: "Industry",
-    icon: <BsCircleFill color={colors["Industry" as keyof Colors]} />,
+    icon: <BsCircleFill color={colors["industry" as keyof Colors]} />,
   },
   {
     value: "ibm",
     label: "IBM",
-    icon: <BsCircleFill color={colors["IBM" as keyof Colors]} />,
+    icon: <BsCircleFill color={colors["ibm" as keyof Colors]} />,
   },
   {
     value: "my_teams",
     label: "MyTeam",
-    icon: <BsCircleFill color={colors["MyTeam" as keyof Colors]} />,
+    icon: <BsCircleFill color={colors["my_team" as keyof Colors]} />,
   },
 ];
 
-const DashboardTable = ({ data, changeType }: Props) => {
+const DashboardTable = ({ data, changeType, isLoading, error }: Props) => {
   return (
     <div className="flex flex-col w-full max-h-[90%] DashboardTable">
       <div className="DashboardTable_Filters mb-3">
@@ -86,15 +89,20 @@ const DashboardTable = ({ data, changeType }: Props) => {
         <p className="font-semibold text-sm">Categories</p>
         <p className="font-semibold text-sm">Industry compatiblity</p>
       </div>
-      <div className="overflow-y-auto overflow-x-hidden">
-        {data.map((data, index) => (
-          <CertificationRow
-            key={`${data.certificate.id} ${index}`}
-            certificate={data.certificate}
-            categories={data.categories}
-          />
-        ))}
-      </div>
+
+      {(isLoading || (!data && !error)) && <Loading />}
+      {error && <p>Error</p>}
+      {data && (
+        <div className="overflow-y-auto overflow-x-hidden">
+          {data.map((data, index) => (
+            <CertificationRow
+              key={`${data.certificate.id} ${index}`}
+              certificate={data.certificate}
+              categories={data.categories}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
