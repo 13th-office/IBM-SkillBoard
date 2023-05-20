@@ -90,8 +90,15 @@ const DashboardTable = ({ data, changeType, isLoading, error }: Props) => {
         <p className="font-semibold text-sm">Industry compatiblity</p>
       </div>
 
-      {(isLoading || (!data && !error)) && <Loading mainColor={false} />}
-      {error && <p>Error</p>}
+      <div className="w-full">
+        {(isLoading || (!data && !error)) && (
+          <div className="w-full flex justify-center h-screen">
+            <Loading type={true} mainColor={false} />
+          </div>
+        )}
+        {error && <p>Error</p>}
+      </div>
+
       {data && (
         <div className="overflow-y-auto overflow-x-hidden">
           {data.map((data, index) => (
