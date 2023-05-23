@@ -52,6 +52,17 @@ class Api::V1::EmployeesController < ApplicationController
     render json: { teams: @employee.teams}
   end
 
+  # GET /search/employees(/:search_term)
+  def search
+    if params.has_key?(:search_term)
+      @employees = Employee.where(name: /.*#{params[:search_term]}.*/i).or(Employee.where(last_name: /.*#{params[:search_term]}.*/i))
+    else
+      @employees = Employee.all
+    end
+    render json: @employees
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
