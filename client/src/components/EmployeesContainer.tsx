@@ -24,7 +24,7 @@ const EmployeesContainer = () => {
   if (data) {
     return (
       <div>
-        <Employees employees={data} />;
+        <Employees employees={data} />
       </div>
     );
   }
