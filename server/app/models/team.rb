@@ -7,6 +7,10 @@ class Team
   has_many :employee_teams
   has_many :manager_teams
 
+  validates :name,
+  presence: true,
+  length: { minimum: 3 }
+
   def info
     {
       id: self._id.to_s,

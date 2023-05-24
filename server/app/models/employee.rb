@@ -45,4 +45,11 @@ class Employee
   alias_attribute :employee_id, :id
   alias_method :to_param, :id
 
+  validates :name,
+  presence: true,
+  length: { minimum: 3 }
+
+  validates :id,
+  presence: true
+
 end
