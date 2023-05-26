@@ -29,7 +29,7 @@ const EmployeesContainer = () => {
   return (
     <div className="flex flex-col h-[90vh]">
       <EmployeeSearchBar changeTerm={changeTerm} />
-      <Employees employees={data} error={error} isLoading={isLoading} />;
+      <Employees employees={data} error={error} isLoading={isLoading} />
     </div>
   );
 };
