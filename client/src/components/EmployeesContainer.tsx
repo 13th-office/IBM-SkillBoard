@@ -26,30 +26,12 @@ const EmployeesContainer = () => {
     fetchEmployees
   );
 
-<<<<<<< HEAD
-  if (isLoading || !data) {
-    <Loading type={true} mainColor={false} />;
-  }
-  if (error) {
-    return <p>Error</p>;
-  }
-
-  if (data) {
-    return (
-      <div>
-        <Employees employees={data} />
-      </div>
-    );
-  }
-  return <Loading type={true} mainColor={false} />;
-=======
   return (
     <div className="flex flex-col h-[90vh]">
       <EmployeeSearchBar changeTerm={changeTerm} />
       <Employees employees={data} error={error} isLoading={isLoading} />;
     </div>
   );
->>>>>>> SearchFunctionality
 };
 
 export default EmployeesContainer;
