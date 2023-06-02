@@ -70,6 +70,14 @@ Using your MongoDB manager or provider create a database for the IBM SkillBoard 
         users
         ```
 
+## Set up React client
+
+- Create `/client/.env.local` from template file `/client/example.env.local`
+    - Populate `VITE_SERVER_URL` field with route of the back end.
+- Build the app by running `npm run build`.
+- Change working directory into `/client/dist/`.
+- Start the server by running `npx http-server --cors`.
+
 ## Set up your bestfriend Ruby!
 
 - Install Ruby 3.0.2.
