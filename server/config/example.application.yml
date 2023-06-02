@@ -10,10 +10,6 @@
 #   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
 #   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
 #config/application.yml
-DB_URI: 'mongodb+srv://ibmSkillBoardUser:ibmSkillBoardPass@ibmskillboard.gom3rfb.mongodb.net/ibmDashboardb?retryWrites=true&w=majority'
-DB_HOST: 'localhost'
-DB_NAME: 'ibmSkillBoard'
-DB_USER: 'ibmSkillBoardUser'
-DB_PASS: 'ibmSkillBoardPass'
+DB_URI: 'mongodb+srv://user:pass@example.net/database?retryWrites=true&w=majority'
 FIREBASE_KEY: 'FIREBASE_KEY'
-REACT_ROUTE: 'http://localhost:5173,http://68.183.111.241:8080'
+REACT_ROUTE: 'http://localhost:5173,http://127.0.0.1:8080'
