@@ -1,0 +1,11 @@
+.employeestable-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #f4f4f4;
+  padding: 30px;
+}
+
+.employeestable-header > * {
+  text-align: center;
+  font-weight: bold;
+}

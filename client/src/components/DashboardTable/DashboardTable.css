@@ -1,0 +1,19 @@
+.DashboardTable_Filters {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.DashboardTable_Filters > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  max-width: 20%;
+}
+
+.select-style {
+  border: 0;
+}

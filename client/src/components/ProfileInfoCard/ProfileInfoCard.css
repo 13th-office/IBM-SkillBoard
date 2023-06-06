@@ -1,0 +1,53 @@
+.profile-info-card {
+  display: flex;
+  flex-direction: row;
+  width: 48%;
+  background-color: #f4f4f4;
+}
+
+.profile-picture-half {
+  display: flex;
+  width: 37%;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.profile-info-picture {
+  display: flex;
+  color: white;
+  background-color: black;
+  border-radius: 50%;
+  padding: 1.5rem;
+  width: 8.5rem;
+  height: 8.5rem;
+  font-size: 4rem;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-info-half {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 63%;
+  padding: 1rem;
+  padding-right: 3rem;
+}
+
+.profile-info-labeled-container {
+  background-color: white;
+  padding: 0.5rem;
+}
+
+.profile-info-card-name {
+  display: flex;
+  font-weight: bolder;
+  font-size: x-large;
+}
+
+.profile-info-labeled-container-title {
+  font-weight: bold;
+}

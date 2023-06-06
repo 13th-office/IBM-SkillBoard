@@ -1,0 +1,53 @@
+name: Configure SSH
+description: Set up SSH configuration file depending on branch (main/dev)
+
+inputs:
+  branch:
+    description: Branch to SSH to (main/dev)
+    required: true
+  main_ssh_user:
+    description: User to use on SSH login (main)
+    required: true
+  main_ssh_ip:
+    description: IP address to SSH to (main)
+    required: true
+  main_ssh_private_key:
+    description: Private key to use on SSH connection (main)
+    required: true
+  dev_ssh_user:
+    description: User to use on SSH login (dev)
+    required: true
+  dev_ssh_ip:
+    description: IP address to SSH to (dev)
+    required: true
+  dev_ssh_private_key:
+    description: Private key to use on SSH connection (dev)
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Create configuration file with main or dev SSH variables
+      run: |
+        if [[ "${{ inputs.branch }}" == "main" ]]
+        then
+          ssh_ip="${{ inputs.main_ssh_ip }}"
+          ssh_user="${{ inputs.main_ssh_user }}"
+          ssh_key="${{ inputs.main_ssh_private_key }}"
+        elif [[ "${{ inputs.branch }}" == "dev" ]]
+        then
+          ssh_ip="${{ inputs.dev_ssh_ip }}"
+          ssh_user="${{ inputs.dev_ssh_user }}"
+          ssh_key="${{ inputs.dev_ssh_private_key }}"
+        fi
+        mkdir -p ~/.ssh/
+        echo "${ssh_key}" > ~/.ssh/deploy-key.pem
+        chmod 600 ~/.ssh/deploy-key.pem
+        cat >> ~/.ssh/config <<END
+        Host my-vps
+          HostName ${ssh_ip}
+          User ${ssh_user}
+          IdentityFile ~/.ssh/deploy-key.pem
+          StrictHostKeyChecking no
+        END
+      shell: bash

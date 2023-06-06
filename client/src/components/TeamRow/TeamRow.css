@@ -1,0 +1,52 @@
+.team-row-general {
+  width: 100%;
+  min-height: 3rem;
+  background: #fff;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.9rem;
+}
+
+.team-row-general > * {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.team-row-role {
+  width: 20%;
+  justify-content: start;
+  margin-left: 15px;
+}
+
+.team-row-name {
+  width: 70%;
+  justify-content: start;
+  margin-left: 15px;
+}
+
+.team-row-button {
+  width: 20%;
+  justify-content: end;
+  margin-right: 15px;
+}
+
+.team-row-profile-button {
+  width: 60%;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #f4f4f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.team-row-profile-button:hover {
+  font-weight: bold;
+}

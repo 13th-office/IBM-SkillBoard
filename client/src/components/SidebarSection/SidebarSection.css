@@ -1,0 +1,17 @@
+.sidebar-section {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  padding-block: 0.9rem;
+  padding-left: 2rem;
+  align-items: center;
+  font-weight: bold;
+}
+
+.sidebar-background-not-selected {
+  background-color: #001756;
+}
+
+.sidebar-background-selected {
+  background-color: #0137cc;
+}

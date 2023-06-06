@@ -1,0 +1,60 @@
+name: Run Tests
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+  workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
+
+jobs:
+  test-client:
+    runs-on: ubuntu-latest
+    name: Run React client tests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install packages
+        run: cd client/ && npm install
+
+      - name: Run tests
+        run: cd client/ && ./run_test.sh
+
+      - name: Send Discord message on failure
+        if: ${{ failure() && ( inputs.environment == 'dev' || inputs.environment == 'main' ) }}
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ inputs.environment }}
+          status: 1
+          activity: "React tests"
+
+  test-server:
+    runs-on: ubuntu-latest
+    name: Run Ruby server tests
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Add Rails test suite setup
+
+      - name: Run tests
+        run: cd server/ && ./run_test.sh
+
+      - name: Send Discord message on failure
+        if: ${{ failure() && ( inputs.environment == 'dev' || inputs.environment == 'main' ) }}
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ inputs.environment }}
+          status: 1
+          activity: "Rails tests"

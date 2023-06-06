@@ -1,0 +1,109 @@
+name: Deploy to VPS
+on:
+  push:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+jobs:
+  get-valid-branch:
+    name: Get main/dev branch
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.extract_branch.outputs.branch }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Extract branch name
+        run: echo "branch=$(echo ${GITHUB_REF_NAME})" >> $GITHUB_OUTPUT
+        id: extract_branch
+
+      - name: Validate
+        run: |
+          if [[ "${GITHUB_REF_NAME}" != "main" && "${GITHUB_REF_NAME}" != "dev" ]]
+          then
+            echo "Invalid branch" >&2
+            exit -1
+          fi
+          exit 0
+
+  test:
+    name: Run Tests
+    needs: get-valid-branch
+    uses: ./.github/workflows/test.yml
+    secrets: inherit
+    with:
+      environment: ${{ needs.get-valid-branch.outputs.branch }}
+
+  fetch-latest-commit:
+    name: Fetch latest commit on VPS
+    needs: [get-valid-branch, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure SSH connection
+        uses: ./.github/actions/configure-ssh
+        with:
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          main_ssh_ip: ${{ secrets.MAIN_SSH_IP }}
+          main_ssh_user: ${{ secrets.MAIN_SSH_USER }}
+          main_ssh_private_key: ${{ secrets.MAIN_SSH_PRIVATE_KEY }}
+          dev_ssh_ip: ${{ secrets.DEV_SSH_IP }}
+          dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
+          dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+
+      - name: Fetch latest commit
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && git checkout ${{ needs.get-valid-branch.outputs.branch }} --force && git fetch && git reset origin/${{ needs.get-valid-branch.outputs.branch }} --hard'
+
+      - name: Send Discord message on failure
+        if: ${{ failure() }}
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          status: 1
+          activity: "Latest commit fetch for deployment"
+
+  deploy:
+    name: Deploy to VPS
+    needs: [get-valid-branch, fetch-latest-commit]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Configure SSH connection
+        uses: ./.github/actions/configure-ssh
+        with:
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          main_ssh_ip: ${{ secrets.MAIN_SSH_IP }}
+          main_ssh_user: ${{ secrets.MAIN_SSH_USER }}
+          main_ssh_private_key: ${{ secrets.MAIN_SSH_PRIVATE_KEY }}
+          dev_ssh_ip: ${{ secrets.DEV_SSH_IP }}
+          dev_ssh_user: ${{ secrets.DEV_SSH_USER }}
+          dev_ssh_private_key: ${{ secrets.DEV_SSH_PRIVATE_KEY }}
+
+      - name: Launch Docker Compose containers
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && ./redeploy.sh'
+
+      - name: Retrieve status
+        run: ssh my-vps 'cd ${{ secrets.PROJECT_ROOT }} && docker compose ps'
+
+      - name: Send Discord message on success
+        if: ${{ success() }}
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          status: 0
+          activity: "Deployment"
+
+      - name: Send Discord message on failure
+        if: ${{ failure() }}
+        uses: ./.github/actions/send-status
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          branch: ${{ needs.get-valid-branch.outputs.branch }}
+          status: 1
+          activity: "Deployment"
