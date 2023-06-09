@@ -1,7 +1,7 @@
 import "chart.js/auto";
 import Chart from "../Chart/Chart";
 import "./DashboardCharts.css";
-import { Charts, ChartContent } from "../../../lib/types";
+import { ChartContent, Charts } from "../../../lib/types";
 
 interface Props {
   left: ChartContent;
@@ -12,10 +12,10 @@ const DashboardCharts = ({ left, right }: Props) => {
   return (
     <div className="main-chart-container">
       <div className="chart-container">
-        <Chart chart_content={left} />
+        <Chart chart_content={left} type={Charts.Pie} />
       </div>
       <div className="chart-container">
-        <Chart chart_content={right} />
+        <Chart chart_content={right} type={Charts.Polar} />
       </div>
     </div>
   );

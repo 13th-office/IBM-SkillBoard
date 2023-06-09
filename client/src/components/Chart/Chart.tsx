@@ -4,9 +4,10 @@ import { ChartContent, Charts } from "../../../lib/types";
 
 interface Props {
   chart_content: ChartContent;
+  type: Charts;
 }
 
-function Chart({ chart_content }: Props) {
+function Chart({ chart_content, type }: Props) {
   const backgroundColors = [
     "rgba(255, 99, 132, 0.2)",
     "rgba(54, 162, 235, 0.2)",
@@ -23,7 +24,7 @@ function Chart({ chart_content }: Props) {
 
   const borderWith = 1;
 
-  if (chart_content.type === Charts.Bar) {
+  if (type === Charts.Bar) {
     return (
       <Bar
         data={{
@@ -43,7 +44,7 @@ function Chart({ chart_content }: Props) {
     );
   }
 
-  if (chart_content.type === Charts.Pie) {
+  if (type === Charts.Pie) {
     return (
       <Pie
         data={{
@@ -63,7 +64,7 @@ function Chart({ chart_content }: Props) {
     );
   }
 
-  if (chart_content.type === Charts.Polar) {
+  if (type === Charts.Polar) {
     return (
       <PolarArea
         data={{

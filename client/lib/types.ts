@@ -50,7 +50,6 @@ export enum Charts {
 }
 
 export interface ChartContent {
-  type: Charts;
   title: string;
   labels: Array<string>;
   dataset: Array<number>;
