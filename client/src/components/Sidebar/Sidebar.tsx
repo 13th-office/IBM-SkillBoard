@@ -45,6 +45,12 @@ const Sidebar = ({ currentRoute }: Props) => {
           icon={<AiOutlineTeam size={"1.6rem"} />}
           selectedSection={selectedSection}
         />
+        <SidebarSection
+          name={"Recommended"}
+          path={"/recommended"}
+          icon={<AiOutlineTeam size={"1.6rem"} />}
+          selectedSection={selectedSection}
+        />
       </div>
       <div className="flex flex-col items-center">
         <button className="logout-button gap-2 mb-5" onClick={handleLogOut}>
