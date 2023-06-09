@@ -5,7 +5,7 @@ import SidebarSection from "../SidebarSection/SidebarSection";
 import Logo from "../Logo";
 import { IoBarChartOutline } from "react-icons/io5";
 import { AiOutlineApartment, AiOutlineTeam } from "react-icons/ai";
-import { BsBoxArrowLeft } from "react-icons/bs";
+import { BsBoxArrowLeft, BsBookmarkStar } from "react-icons/bs";
 import { SESSION_KEY } from "../../../lib/constants";
 import { UserContext } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
@@ -48,7 +48,7 @@ const Sidebar = ({ currentRoute }: Props) => {
         <SidebarSection
           name={"Recommended"}
           path={"/recommended"}
-          icon={<AiOutlineTeam size={"1.6rem"} />}
+          icon={<BsBookmarkStar size={"1.6rem"} />}
           selectedSection={selectedSection}
         />
       </div>
