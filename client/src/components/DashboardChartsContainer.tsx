@@ -15,11 +15,7 @@ const dummy = {
 };
 
 const DashboardChartsContainer = () => {
-  return (
-    <div>
-      <DashboardCharts left={dummy.left} right={dummy.right} />
-    </div>
-  );
+  return <DashboardCharts left={dummy.left} right={dummy.right} />;
 };
 
 export default DashboardChartsContainer;

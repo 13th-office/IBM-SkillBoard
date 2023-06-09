@@ -22,6 +22,10 @@ function Chart({ chart_content, type }: Props) {
     "rgba(75, 192, 192, 1)",
   ];
 
+  const responsive = true;
+
+  const aspectRatio = false;
+
   const borderWith = 1;
 
   if (type === Charts.Bar) {
@@ -39,7 +43,7 @@ function Chart({ chart_content, type }: Props) {
             },
           ],
         }}
-        options={{ responsive: true, maintainAspectRatio: false }}
+        options={{ responsive: responsive, maintainAspectRatio: aspectRatio }}
       />
     );
   }
@@ -55,11 +59,11 @@ function Chart({ chart_content, type }: Props) {
               data: chart_content.dataset,
               backgroundColor: backgroundColors,
               borderColor: borderColors,
-              borderWidth: 1,
+              borderWidth: borderWith,
             },
           ],
         }}
-        options={{ responsive: true, maintainAspectRatio: false }}
+        options={{ responsive: responsive, maintainAspectRatio: aspectRatio }}
       />
     );
   }
@@ -75,11 +79,11 @@ function Chart({ chart_content, type }: Props) {
               data: chart_content.dataset,
               backgroundColor: backgroundColors,
               borderColor: borderColors,
-              borderWidth: 1,
+              borderWidth: borderWith,
             },
           ],
         }}
-        options={{ responsive: true, maintainAspectRatio: false }}
+        options={{ responsive: responsive, maintainAspectRatio: aspectRatio }}
       />
     );
   }
