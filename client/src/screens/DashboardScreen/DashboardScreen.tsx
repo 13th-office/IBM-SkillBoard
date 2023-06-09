@@ -7,8 +7,12 @@ const DashboardScreen = () => {
   return (
     <div className="background-screen h-screen">
       <Header title={"Dashboard"} />
-      <DashboardChartsContainer />
-      <DashboardTableContainer />
+      <div className="dashboard-screen-charts">
+        <DashboardChartsContainer />
+      </div>
+      <div className="dashboard-screen-table">
+        <DashboardTableContainer />
+      </div>
     </div>
   );
 };

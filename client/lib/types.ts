@@ -42,3 +42,16 @@ export interface TeamWithEmployeesManager {
   employees: User[];
   manager: User;
 }
+
+export enum Charts {
+  Bar = "bar",
+  Pie = "pie",
+  Polar = "polar",
+}
+
+export interface ChartContent {
+  type: Charts;
+  title: string;
+  labels: Array<string>;
+  dataset: Array<number>;
+}
