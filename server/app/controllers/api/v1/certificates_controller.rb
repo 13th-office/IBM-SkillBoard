@@ -77,6 +77,49 @@ class Api::V1::CertificatesController < ApplicationController
       @certificate.destroy
     end
   
+    # GET /certificates/dashboard_charts
+    def dashboard_charts
+      # Chart 1 work
+      @top_categories = CertificateCategory.most_frequent_categories(8)
+      @g1_labels = []
+      @g1_dataset = []
+      @g1_title = "Top categories"
+
+      @top_categories.each_with_index do | category, i |
+        @g1_labels[i] = Category.find(category['_id']).name
+        @g1_dataset[i] = category['count']
+      end
+
+      # Chart 2 work
+      @user = User.find_by(id: session[:user_id])
+      @employee = Employee.find_by(email: @user.email)
+      @teammates = @employee.teamMembers
+      @certificates = CertificateEmployee.top_certificates_team(@teammates, 8)
+
+      @g2_labels = []
+      @g2_dataset = []
+      @g2_title = "Top certificates in your teams"
+
+      @certificates.each_with_index do | certificate, i |
+        @g2_labels[i] = Certificate.find(certificate['_id']).name
+        @g2_dataset[i] = certificate['count']
+      end
+
+      render json: { 
+        left: { 
+          title: @g1_title, 
+          labels: @g1_labels, 
+          dataset: @g1_dataset 
+          },
+        right: {
+          title: @g2_title, 
+          labels: @g2_labels, 
+          dataset: @g2_dataset 
+        }}
+
+
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_certificate
