@@ -14,9 +14,9 @@ class Api::V1::CertificatesController < ApplicationController
       type = params[:id]
 
       if type == "all"
-        @certificates = Certificate.all
+        @certificates = Certificate.all.first(20)
       elsif type == "ibm" || type == "industry"
-        @certificates = Certificate.where(type: type)
+        @certificates = Certificate.where(type: type).first(20)
       elsif type == "my_teams"
         user = User.find_by(id: session[:user_id])
         employee = user.employee
@@ -32,7 +32,7 @@ class Api::V1::CertificatesController < ApplicationController
         ))
         employee_ids = employees.map{|employee| employee[:id]}
         @certificates = Certificate.where(:id.in => (
-          CertificateEmployee.where(:employee_id.in => employee_ids).pluck(:certificate_id)
+          CertificateEmployee.where(:employee_id.in => employee_ids).pluck(:certificate_id).first(20)
         ))
       else
         render json: { error: "type must be all, ibm, industry, or my_teams" }, status: :bad_request
