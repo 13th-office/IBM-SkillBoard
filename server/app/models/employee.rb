@@ -35,6 +35,18 @@ class Employee
     teams = Team.where(:id.in =>(employee_teams.pluck(:team_id)+manager_teams.pluck(:team_id)))
     teams.map { |team| { team: team.info, manager: team.managers[0]} }
   end
+  
+  def teamMembers
+    teams = Team.where(:id.in =>(employee_teams.pluck(:team_id)+manager_teams.pluck(:team_id)))
+    @members = []
+    teams.each do |team|
+      team.employees.each do |employee|
+        @members << employee[:id]
+      end
+      @members << team.managers[0][:id]
+    end
+    @members
+  end
 
   def certificates
     certificates = Certificate.where(:_id.in => (certificate_employees.pluck(:certificate_id)))

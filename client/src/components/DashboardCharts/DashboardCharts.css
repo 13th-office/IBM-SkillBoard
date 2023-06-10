@@ -1,0 +1,17 @@
+.main-chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+  margin-inline: 1rem;
+  min-height: 100%;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45%;
+  min-height: 35vh;
+}

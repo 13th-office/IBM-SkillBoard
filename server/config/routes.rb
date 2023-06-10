@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
       resources :certificates do
         post 'mass_create', on: :collection
+        get 'dashboard_charts', on: :collection
       end
       resources :manager_teams
       resources :employee_teams
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
       post "login", to: "auth#login"
       post "logout", to: "auth#logout"
       get "search/employees/(/:search_term)", to: "employees#search"
-
       end
   end
     
