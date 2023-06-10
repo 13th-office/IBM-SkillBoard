@@ -9,6 +9,9 @@ import { BsBoxArrowLeft } from "react-icons/bs";
 import { SESSION_KEY } from "../../../lib/constants";
 import { UserContext } from "../../contexts/UserContext";
 import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 interface Props {
   currentRoute: string;
@@ -18,9 +21,26 @@ const Sidebar = ({ currentRoute }: Props) => {
   const { setUser } = useContext(UserContext);
   const selectedSection = currentRoute;
 
+  const navigate = useNavigate();
+
+  const logOutMutation = useMutation({
+    mutationFn: () => {
+      axios.defaults.withCredentials = true;
+      axios.defaults.headers.common["Cache-Control"] = "no-cache";
+      axios.defaults.headers.common["Pragma"] = "no-cache";
+      return axios.post(`${import.meta.env.VITE_SERVER_URL}/logout`, {
+        withCredentials: true,
+      });
+    },
+    onSuccess: () => {
+      localStorage.removeItem(SESSION_KEY);
+      setUser(null);
+      navigate("/");
+    },
+  });
+
   const handleLogOut = () => {
-    localStorage.removeItem(SESSION_KEY);
-    setUser(null);
+    logOutMutation.mutate();
   };
 
   return (
