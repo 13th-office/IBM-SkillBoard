@@ -35,7 +35,6 @@ function Chart({ chart_content, type }: Props) {
           labels: chart_content.labels,
           datasets: [
             {
-              label: chart_content.title,
               data: chart_content.dataset,
               backgroundColor: backgroundColors,
               borderColor: borderColors,
@@ -43,7 +42,37 @@ function Chart({ chart_content, type }: Props) {
             },
           ],
         }}
-        options={{ responsive: responsive, maintainAspectRatio: aspectRatio }}
+        options={{
+          responsive: responsive,
+          maintainAspectRatio: aspectRatio,
+          plugins: {
+            title: {
+              display: true,
+              text: chart_content.title,
+              font: { size: 16 },
+            },
+            legend: { display: false },
+          },
+          scales: {
+            x: {
+              ticks: {
+                callback: function (value: any) {
+                  let characterLimit = 15;
+                  let label: string = this.getLabelForValue(value);
+                  if (label.length >= characterLimit) {
+                    return (
+                      label
+                        .slice(0, label.length)
+                        .substring(0, characterLimit - 1)
+                        .trim() + "..."
+                    );
+                  }
+                  return label;
+                },
+              },
+            },
+          },
+        }}
       />
     );
   }
@@ -55,7 +84,6 @@ function Chart({ chart_content, type }: Props) {
           labels: chart_content.labels,
           datasets: [
             {
-              label: chart_content.title,
               data: chart_content.dataset,
               backgroundColor: backgroundColors,
               borderColor: borderColors,
@@ -63,7 +91,17 @@ function Chart({ chart_content, type }: Props) {
             },
           ],
         }}
-        options={{ responsive: responsive, maintainAspectRatio: aspectRatio }}
+        options={{
+          responsive: responsive,
+          maintainAspectRatio: aspectRatio,
+          plugins: {
+            title: {
+              display: true,
+              text: chart_content.title,
+              font: { size: 16 },
+            },
+          },
+        }}
       />
     );
   }
@@ -75,7 +113,6 @@ function Chart({ chart_content, type }: Props) {
           labels: chart_content.labels,
           datasets: [
             {
-              label: chart_content.title,
               data: chart_content.dataset,
               backgroundColor: backgroundColors,
               borderColor: borderColors,
@@ -83,46 +120,22 @@ function Chart({ chart_content, type }: Props) {
             },
           ],
         }}
-        options={{ responsive: responsive, maintainAspectRatio: aspectRatio }}
+        options={{
+          responsive: responsive,
+          maintainAspectRatio: aspectRatio,
+          plugins: {
+            title: {
+              display: true,
+              text: chart_content.title,
+              font: { size: 16 },
+            },
+          },
+        }}
       />
     );
   }
 
   return <div>No chart specified</div>;
-}
-
-{
-  /* <Pie
-          data={{
-            labels: ["Red", "Blue", "Yellow", "Green"],
-            datasets: [
-              {
-                label: "# of votes",
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.2)",
-                  "rgba(54, 162, 235, 0.2)",
-                  "rgba(255, 206, 86, 0.2)",
-                  "rgba(75, 192, 192, 0.2)",
-                ],
-                borderColor: [
-                  "rgba(255, 99, 132, 1)",
-                  "rgba(54, 162, 235, 1)",
-                  "rgba(255, 206, 86, 1)",
-                  "rgba(75, 192, 192, 1)",
-                ],
-                borderWidth: 1,
-              },
-              // {
-              //   label: 'Quantity',
-              //   data: [47, 52, 67, 58, 9, 50],
-              //   backgroundColor: 'orange',
-              //   borderColor: 'red',
-              // },
-            ],
-          }}
-          options={{ responsive: true, maintainAspectRatio: false }}
-        /> */
 }
 
 export default Chart;

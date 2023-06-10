@@ -15,7 +15,7 @@ const DashboardCharts = ({ left, right }: Props) => {
         <Chart chart_content={left} type={Charts.Pie} />
       </div>
       <div className="chart-container">
-        <Chart chart_content={right} type={Charts.Polar} />
+        <Chart chart_content={right} type={Charts.Bar} />
       </div>
     </div>
   );
