@@ -4,7 +4,7 @@ class Api::V1::CertificatesController < ApplicationController
 
     # GET /certificates
     def index
-      @certificates = Certificate.all
+      @certificates = Certificate.last(20)
 
       render json: @certificates.map { |certificate| certificate.all_info }
     end
