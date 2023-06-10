@@ -10,8 +10,6 @@ interface Props {
 }
 
 const SidebarSection = ({ name, path, icon, selectedSection }: Props) => {
-  console.log(name.toLowerCase().replace(/\s/g, ""));
-
   return (
     <Link to={path}>
       <div
