@@ -25,7 +25,12 @@ const CertificationRow = ({ certificate, categories }: Props) => {
         <BsCircleFill color={colors[certificate.type as keyof Colors]} />
       </div>
 
-      <p className="certification-row-name font-medium">{certificate.name}</p>
+      <p
+        className="certification-row-name font-medium overflow-hidden text-ellipsis whitespace-nowrap justify-start text-center"
+        title={certificate.name}
+      >
+        {certificate.name}
+      </p>
 
       <p>{certificate.type}</p>
 
